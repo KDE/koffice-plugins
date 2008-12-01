@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
- * Copyright (C) 2007 Thomas Zander <zander@kde.org>
+ * Copyright (C) 2008 Florian Merz <florianmerz@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,18 +17,41 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AutocorrectFactory.h"
-#include "Autocorrect.h"
+#ifndef LABEL_H
+#define LABEL_H
 
-#include <klocale.h>
 
-AutocorrectFactory::AutocorrectFactory(QObject *parent)
-    : KoTextEditingFactory(parent, "autocorrect")
+#include <QColor>
+#include <QObject>
+#include <QPointF>
+#include <QRectF>
+#include <QString>
+#include <Qt>
+
+class QPainter;
+class KoViewConverter;
+
+/* simple label for displaying text */
+class Label : public QObject
 {
-    setShowInMenu(true);
-    setTitle(i18n ("Autocorrect") );
-}
+    Q_OBJECT
+public:
+    Label(QObject *parent = NULL);
+    ~Label();
 
-KoTextEditingPlugin *AutocorrectFactory::create() const {
-    return new Autocorrect();
-}
+    void setColor(QColor color);
+    void setText(QString text);
+    void setPosition(QPointF position, Qt::Alignment alignment = 0x0);
+
+    QRectF boundingRect() const;
+    void paint(QPainter &painter) const;
+
+private:
+    QString m_text;
+    QColor m_color;
+    QPointF m_position;
+    Qt::Alignment m_alignment;
+};
+
+#endif
+
