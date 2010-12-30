@@ -1,49 +1,15 @@
-if(MSVC)
-  # avoid "cannot open file 'LIBC.lib'" error
-  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /NODEFAULTLIB:LIBC.LIB")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:LIBC.LIB")
-endif(MSVC)
+project(koffice-plugins)
 
+find_package(KDE4 REQUIRED)
+find_package(KOfficeLibs REQUIRED)
 
-include_directories(
-        ${KOMAIN_INCLUDES}
-)
+include (KDE4Defaults)
 
-IF (NOT TINY)
-    macro_optional_add_subdirectory( scan )
-    macro_optional_add_subdirectory( colorengines )
-    macro_optional_add_subdirectory( paragraphtool )
-    macro_optional_add_subdirectory( musicshape )
-    macro_optional_add_subdirectory( divineProportion )
+include_directories(${KDE4_INCLUDES} ${QT_INCLUDES} ${KOFFICELIBS_INCLUDE_DIR})
 
-    macro_optional_find_package(Spnav)
-    macro_log_feature(SPNAV_FOUND "Spnav" "3Dconnexion device driver and SDK" "http://spacenav.sourceforge.net/" FALSE "" "Required by SpaceNavigator 3D mouse plugin")
+add_subdirectory(divineProportion)
+add_subdirectory(paragraphtool)
+add_subdirectory(pluginshape)
+add_subdirectory(simpletextedit)
+add_subdirectory(textediting)
 
-    IF (SPNAV_FOUND)
-        macro_optional_add_subdirectory( spacenavigator )
-    ENDIF (SPNAV_FOUND)
-    macro_optional_add_subdirectory( artistictextshape )
-    macro_optional_add_subdirectory( dockers )
-    macro_optional_add_subdirectory( textediting )
-    macro_optional_add_subdirectory( simpletextedit )
-    macro_optional_add_subdirectory( commentshape )
-ENDIF (NOT TINY)
-macro_optional_add_subdirectory( variables )
-macro_optional_add_subdirectory( defaultTools )
-macro_optional_add_subdirectory( pathshapes )
-macro_optional_add_subdirectory( chartshape )
-macro_optional_add_subdirectory( pictureshape )
-macro_optional_add_subdirectory( videoshape )
-macro_optional_add_subdirectory( textshape )
-macro_optional_add_subdirectory( pluginshape )
-macro_optional_add_subdirectory( treeshape )
-
-# as the vector shape depends on filters subdir (not really intuitive) lets allow disabling
-macro_optional_add_subdirectory( vectorshape )
-
-# only build the reporting plugins if building koreport
-if(SHOULD_BUILD_KOREPORT)
-    macro_optional_add_subdirectory( reporting )
-endif(SHOULD_BUILD_KOREPORT)
-
-macro_optional_add_subdirectory( staging )

@@ -1,7 +1,7 @@
 
 
 
-include_directories( ${KDE4_INCLUDES} ${KOTEXT_INCLUDES} ${KOMAIN_INCLUDES} )
+include_directories( ${KDE4_INCLUDES} ${KOTEXT_INCLUDES})
 
 ########### next target ###############
 
@@ -14,7 +14,7 @@ set(thesaurustool_SRCS
 
 kde4_add_plugin(thesaurustool ${thesaurustool_SRCS})
 
-target_link_libraries(thesaurustool kotext)
+target_link_libraries(thesaurustool ${KOTEXT_LIBS})
 
 install(TARGETS thesaurustool  DESTINATION ${PLUGIN_INSTALL_DIR})
 

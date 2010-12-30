@@ -31,8 +31,6 @@
 #include <KStandardDirs>
 #include <KDebug>
 
-#include <KoGlobal.h>
-
 Autocorrect::Autocorrect()
 {
     /* setup actions for this plugin */
@@ -628,7 +626,8 @@ QString Autocorrect::autoDetectURL(const QString &_word) const
 
 void Autocorrect::readConfig()
 {
-    KConfigGroup interface = KoGlobal::kofficeConfig()->group("Autocorrect");
+    KConfig global("kofficerc");
+    KConfigGroup interface(global.group("Autocorrect"));
 
     m_enabled->setChecked(interface.readEntry("enabled", m_enabled->isChecked()));
     m_uppercaseFirstCharOfSentence = interface.readEntry("UppercaseFirstCharOfSentence", m_uppercaseFirstCharOfSentence);
@@ -654,7 +653,9 @@ void Autocorrect::readConfig()
 
 void Autocorrect::writeConfig()
 {
-    KConfigGroup interface = KoGlobal::kofficeConfig()->group("Autocorrect");
+    KConfig global("kofficerc");
+    KConfigGroup interface(global.group("Autocorrect"));
+
     interface.writeEntry("enabled", m_enabled->isChecked());
     interface.writeEntry("UppercaseFirstCharOfSentence", m_uppercaseFirstCharOfSentence);
     interface.writeEntry("FixTwoUppercaseChars", m_fixTwoUppercaseChars);

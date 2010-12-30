@@ -28,7 +28,7 @@ kde4_add_ui_files(
 
 kde4_add_plugin(paragraphtool ${paragraphtool_SRCS})
 
-target_link_libraries(paragraphtool kotext)
+target_link_libraries(paragraphtool ${KOTEXT_LIBS})
 install(TARGETS paragraphtool DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############

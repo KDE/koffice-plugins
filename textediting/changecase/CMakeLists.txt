@@ -1,6 +1,6 @@
 project(changecase)
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${KOTEXT_INCLUDES} ${KOMAIN_INCLUDES} )
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${KOTEXT_INCLUDES} ${KOTEXT_INCLUDES} )
 
 set(changecase_SRCS
     ChangecasePlugin.cpp
@@ -10,7 +10,7 @@ set(changecase_SRCS
 
 kde4_add_plugin(changecase ${changecase_SRCS})
 
-target_link_libraries(changecase kotext)
+target_link_libraries(changecase ${KOTEXT_LIBS})
 
 install(TARGETS changecase DESTINATION ${PLUGIN_INSTALL_DIR})
 
