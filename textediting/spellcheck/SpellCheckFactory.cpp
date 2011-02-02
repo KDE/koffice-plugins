@@ -29,7 +29,7 @@ SpellCheckFactory::SpellCheckFactory(QObject *parent)
     setTitle(i18n("Spell Check"));
 }
 
-KoTextEditingPlugin *SpellCheckFactory::create() const
+KoTextEditingPlugin *SpellCheckFactory::create(KoResourceManager *docResources) const
 {
     return new SpellCheck();
 }

@@ -29,7 +29,7 @@ class SpellCheckFactory : public KoTextEditingFactory
 public:
     explicit SpellCheckFactory(QObject *parent);
 
-    KoTextEditingPlugin *create() const;
+    KoTextEditingPlugin *create(KoResourceManager *docResources) const;
 };
 
 #endif
