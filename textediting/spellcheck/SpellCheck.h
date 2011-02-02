@@ -1,6 +1,6 @@
 /* This file is part of the KDE project
  * Copyright (C) 2007 Fredy Yanardi <fyanardi@gmail.com>
- * Copyright (C) 2007,2010 Thomas Zander <zander@kde.org>
+ * Copyright (C) 2007,2010-2011 Thomas Zander <zander@kde.org>
  * Copyright (C) 2010 Christoph Goerlich <chgoerlich@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -34,12 +34,15 @@
 class QTextDocument;
 class BgSpellCheck;
 class SpellCheckMenu;
+class KoResourceManager;
 
 class SpellCheck : public KoTextEditingPlugin
 {
     Q_OBJECT
 public:
     SpellCheck();
+
+    void setResourceManager(KoResourceManager *rm);
 
     /// reimplemented from superclass
     void finishedWord(QTextDocument *document, int cursorPosition);
@@ -80,6 +83,7 @@ private slots:
     void setBackgroundSpellChecking(bool b);
     void documentChanged(int from, int min, int plus);
     void clearHighlightMisspelled(int startPosition);
+    void resourceChanged(int key);
 
 private:
     Sonnet::Speller m_speller;
@@ -116,6 +120,8 @@ private:
         QList<QTextLayout::FormatRange> ranges;
     };
     QList<BlockLayout> m_misspellings;
+
+    KoResourceManager *m_resourceManager;
 };
 
 #endif

@@ -1,5 +1,6 @@
 /* This file is part of the KDE project
  * Copyright (C) 2007 Fredy Yanardi <fyanardi@gmail.com>
+ * Copyright (C) 2011 Thomas Zander <zander@kde.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -31,6 +32,8 @@ SpellCheckFactory::SpellCheckFactory(QObject *parent)
 
 KoTextEditingPlugin *SpellCheckFactory::create(KoResourceManager *docResources) const
 {
-    return new SpellCheck();
+    SpellCheck *sp = new SpellCheck();
+    sp->setResourceManager(docResources);
+    return sp;
 }
 

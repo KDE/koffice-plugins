@@ -1,6 +1,6 @@
 /* This file is part of the KDE project
  * Copyright (C) 2007, 2008 Fredy Yanardi <fyanardi@gmail.com>
- * Copyright (C) 2007,2009,2010 Thomas Zander <zander@kde.org>
+ * Copyright (C) 2007-2011 Thomas Zander <zander@kde.org>
  * Copyright (C) 2010 Christoph Goerlich <chgoerlich@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -44,7 +44,8 @@ SpellCheck::SpellCheck()
     m_allowSignals(true),
     m_documentIsLoading(false),
     m_isChecking(false),
-    m_spellCheckMenu(0)
+    m_spellCheckMenu(0),
+    m_resourceManager(0)
 {
     /* setup actions for this plugin */
     KAction *configureAction = new KAction(i18n("Configure &Spell Checking..."), this);
@@ -74,6 +75,22 @@ SpellCheck::SpellCheck()
     connect(spellCheck, SIGNAL(toggled(bool)), this, SLOT(setBackgroundSpellChecking(bool)));
     connect(m_spellCheckMenu, SIGNAL(clearHighlightingForWord(int)),
             this, SLOT(clearHighlightMisspelled(int)));
+}
+
+void SpellCheck::setResourceManager(KoResourceManager *rm)
+{
+    Q_ASSERT(m_resourceManager == 0); // need to disconnect otherwise
+    m_resourceManager = rm;
+    Q_ASSERT(m_resourceManager);
+    connect (m_resourceManager, SIGNAL(resourceChanged(int, const QVariant&)),
+        this, SLOT(resourceChanged(int)));
+
+    // check all of them.
+    if (m_enableAutoSpellCheck) {
+        foreach (QTextDocument *doc, m_resourceManager->textDocumentList()) {
+            checkSection(doc, 0, doc->characterCount());
+        }
+    }
 }
 
 void SpellCheck::finishedWord(QTextDocument *document, int cursorPosition)
@@ -259,6 +276,13 @@ void SpellCheck::documentChanged(int from, int min, int plus)
     }
 }
 
+void SpellCheck::resourceChanged(int key)
+{
+    if (key == KoDocumentResource::TextDocuments) {
+        // TODO. Do something?
+    }
+}
+
 void SpellCheck::runQueue()
 {
     Q_ASSERT(QThread::currentThread() == QApplication::instance()->thread());
@@ -273,14 +297,21 @@ void SpellCheck::runQueue()
             continue;
         m_isChecking = true;
         m_misspellings.clear();
+        int blocks = 0;
         do {
+            if (++blocks > 100) {
+                SpellSections ss(section.document, block.position(), section.to);
+                m_documentsQueue.enqueue(ss);
+                section.to = block.position();
+                break;
+            }
             BlockLayout bl;
             bl.start = block.position();
             bl.length = block.length();
             bl.checkStart = qMax(bl.start, section.from);
             m_misspellings << bl;
             block = block.next();
-        } while(block.isValid() && block.position() < section.to);
+        } while (block.isValid() && block.position() < section.to);
 
         m_bgSpellCheck->startRun(section.document, section.from, section.to);
         break;
