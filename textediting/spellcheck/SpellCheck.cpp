@@ -40,7 +40,7 @@
 
 SpellCheck::SpellCheck()
     : m_bgSpellCheck(0),
-    m_enableSpellCheck(true),
+    m_enableAutoSpellCheck(true),
     m_allowSignals(true),
     m_documentIsLoading(false),
     m_isChecking(false),
@@ -55,8 +55,8 @@ SpellCheck::SpellCheck()
     addAction("tool_auto_spellcheck", spellCheck);
 
     KConfigGroup spellConfig = KGlobal::config()->group("Spelling");
-    m_enableSpellCheck = spellConfig.readEntry("autoSpellCheck", m_enableSpellCheck);
-    spellCheck->setChecked(m_enableSpellCheck);
+    m_enableAutoSpellCheck = spellConfig.readEntry("autoSpellCheck", m_enableAutoSpellCheck);
+    spellCheck->setChecked(m_enableAutoSpellCheck);
     m_speller = Sonnet::Speller(spellConfig.readEntry("defaultLanguage", "en_US"));
     m_bgSpellCheck = new BgSpellCheck(m_speller, this);
 
@@ -79,7 +79,7 @@ SpellCheck::SpellCheck()
 void SpellCheck::finishedWord(QTextDocument *document, int cursorPosition)
 {
     setDocument(document);
-    if (!m_enableSpellCheck)
+    if (!m_enableAutoSpellCheck)
         return;
 
     QTextBlock block = document->findBlock(cursorPosition);
@@ -99,8 +99,6 @@ void SpellCheck::finishedParagraph(QTextDocument *document, int cursorPosition)
 void SpellCheck::checkSection(QTextDocument *document, int startPosition, int endPosition)
 {
     setDocument(document);
-    if (!m_enableSpellCheck)
-        return;
     if (startPosition >= endPosition) // no work
         return;
 
@@ -144,13 +142,13 @@ void SpellCheck::setDefaultLanguage(const QString &language)
 
 void SpellCheck::setBackgroundSpellChecking(bool on)
 {
-    if (m_enableSpellCheck == on)
+    if (m_enableAutoSpellCheck == on)
         return;
     KConfigGroup spellConfig = KGlobal::config()->group("Spelling");
-    m_enableSpellCheck = on;
-    spellConfig.writeEntry("autoSpellCheck", m_enableSpellCheck);
+    m_enableAutoSpellCheck = on;
+    spellConfig.writeEntry("autoSpellCheck", m_enableAutoSpellCheck);
     if (m_document) {
-        if (!m_enableSpellCheck) {
+        if (!m_enableAutoSpellCheck) {
             for (QTextBlock block = m_document->begin(); block != m_document->end(); block = block.next()) {
                 if (block.isValid() && block.layout()->additionalFormats().count() > 0) {
                     block.layout()->clearAdditionalFormats();
@@ -184,7 +182,7 @@ QString SpellCheck::defaultLanguage() const
 
 bool SpellCheck::backgroundSpellChecking()
 {
-    return m_enableSpellCheck;
+    return m_enableAutoSpellCheck;
 }
 
 bool SpellCheck::skipAllUppercaseWords()
@@ -363,7 +361,7 @@ void SpellCheck::finishedRun()
 void SpellCheck::setCurrentCursorPosition(QTextDocument *document, int cursorPosition)
 {
     setDocument(document);
-    if (m_enableSpellCheck) {
+    if (m_enableAutoSpellCheck) {
         //check if word at cursor is misspelled
         QTextBlock block = m_document->findBlock(cursorPosition);
         if (block.isValid() && block.layout()->additionalFormats().count() > 0) {

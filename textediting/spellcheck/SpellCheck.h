@@ -98,7 +98,7 @@ private:
         int to;
     };
     QQueue<SpellSections> m_documentsQueue;
-    bool m_enableSpellCheck;
+    bool m_enableAutoSpellCheck;
     bool m_allowSignals;
     bool m_documentIsLoading;
     bool m_isChecking;
