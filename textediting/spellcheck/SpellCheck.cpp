@@ -24,6 +24,7 @@
 #include "SpellCheckMenu.h"
 
 #include <KoCharacterStyle.h>
+#include <KoText.h>
 #include <KoResourceManager.h>
 
 #include <KLocale>
@@ -88,7 +89,10 @@ void SpellCheck::setResourceManager(KoResourceManager *rm)
     // check all of them.
     if (m_enableAutoSpellCheck) {
         foreach (QTextDocument *doc, m_resourceManager->textDocumentList()) {
+            if (doc->characterCount() <= 2)
+                continue;
             checkSection(doc, 0, doc->characterCount());
+            doc->begin().setUserState(KoText::BlockTextLayoutState);
         }
     }
 }
@@ -288,6 +292,7 @@ void SpellCheck::runQueue()
     Q_ASSERT(QThread::currentThread() == QApplication::instance()->thread());
     if (m_isChecking)
         return;
+
     while (!m_documentsQueue.isEmpty()) {
         SpellSections section = m_documentsQueue.dequeue();
         if (section.document.isNull())
@@ -295,6 +300,7 @@ void SpellCheck::runQueue()
         QTextBlock block = section.document->findBlock(section.from);
         if (!block.isValid())
             continue;
+        block.setUserState(KoText::BlockTextLayoutState);
         m_isChecking = true;
         m_misspellings.clear();
         int blocks = 0;
@@ -302,7 +308,7 @@ void SpellCheck::runQueue()
             if (++blocks > 100) {
                 SpellSections ss(section.document, block.position(), section.to);
                 m_documentsQueue.enqueue(ss);
-                section.to = block.position();
+                section.to = block.position() - 1;
                 break;
             }
             BlockLayout bl;
@@ -336,6 +342,7 @@ void SpellCheck::finishedRun()
         QTextBlock block = m_document->findBlock(bl.start);
         if (!block.isValid())
             continue;
+        block.setUserState(-1);
         if (bl.start != block.position() || bl.length != block.length())
             continue;
         QList<QTextLayout::FormatRange> ranges = block.layout()->additionalFormats();
@@ -386,7 +393,7 @@ void SpellCheck::finishedRun()
     }
     m_allowSignals = true;
 
-    QTimer::singleShot(0, this, SLOT(runQueue()));
+    runQueue();
 }
 
 void SpellCheck::setCurrentCursorPosition(QTextDocument *document, int cursorPosition)

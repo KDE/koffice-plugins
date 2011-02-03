@@ -97,21 +97,24 @@ QString BgSpellCheck::fetchMoreText()
         while (!iter.atEnd() && iter.fragment().position() + iter.fragment().length() <=
                 m_currentPosition)
             iter++;
+        if (iter.atEnd()) {
+            block = block.next();
+            continue;
+        }
         break;
     }
 
     int end = m_endPosition;
-    QTextCharFormat cf = iter.fragment().charFormat();
-    QString language;
-    if (cf.hasProperty(KoCharacterStyle::Language))
-        language = cf.property(KoCharacterStyle::Language).toString();
-    else
-        language = m_defaultLanguage;
-    QString country;
-    if (cf.hasProperty(KoCharacterStyle::Country))
-        country = cf.property(KoCharacterStyle::Country).toString();
-    else
-        country = m_defaultCountry;
+    QString language(m_defaultLanguage);
+    QString country(m_defaultCountry);
+    if (!iter.atEnd()) {
+        QTextCharFormat cf = iter.fragment().charFormat();
+        if (cf.hasProperty(KoCharacterStyle::Language))
+            language = cf.property(KoCharacterStyle::Language).toString();
+        if (cf.hasProperty(KoCharacterStyle::Country))
+            country = cf.property(KoCharacterStyle::Country).toString();
+    }
+    Q_ASSERT(iter.fragment().isValid());
 
     // qDebug() << "init" << language << country << "/" << iter.fragment().position();
     while(true) {
@@ -129,7 +132,7 @@ QString BgSpellCheck::fetchMoreText()
         }
         Q_ASSERT(iter.fragment().isValid());
         // qDebug() << "Checking for viability forwarding to " << iter.fragment().position();
-        cf = iter.fragment().charFormat();
+        QTextCharFormat cf = iter.fragment().charFormat();
         // qDebug() << " new fragment language;"
             // << (cf.hasProperty(KoCharacterStyle::Language) ?  cf.property(KoCharacterStyle::Language).toString() : "unset");
 
