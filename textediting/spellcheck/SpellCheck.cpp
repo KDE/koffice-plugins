@@ -342,7 +342,11 @@ void SpellCheck::finishedRun()
         QTextBlock block = m_document->findBlock(bl.start);
         if (!block.isValid())
             continue;
-        block.setUserState(-1);
+        if (block.userState() == KoText::BlockTextLayoutState && block.layout()->lineCount() == 0) {
+            // make sure we start a layout
+            m_document->markContentsDirty(block.position(), block.position() + 1);
+        }
+        block.setUserState(KoText::NoState);
         if (bl.start != block.position() || bl.length != block.length())
             continue;
         QList<QTextLayout::FormatRange> ranges = block.layout()->additionalFormats();
