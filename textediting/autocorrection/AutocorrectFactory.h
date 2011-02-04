@@ -29,7 +29,7 @@ public:
     explicit AutocorrectFactory(QObject *parent);
     ~AutocorrectFactory() {}
 
-    KoTextEditingPlugin *create() const;
+    KoTextEditingPlugin *create(KoResourceManager *documentResourceManager) const;
 };
 
 #endif

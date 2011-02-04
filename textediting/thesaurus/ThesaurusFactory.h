@@ -29,7 +29,7 @@ public:
     explicit ThesaurusFactory(QObject *parent);
     ~ThesaurusFactory() {}
 
-    KoTextEditingPlugin *create() const;
+    KoTextEditingPlugin *create(KoResourceManager *docRm) const;
 };
 
 #endif

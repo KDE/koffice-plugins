@@ -29,7 +29,7 @@ AutocorrectFactory::AutocorrectFactory(QObject *parent)
     setTitle(i18n ("Autocorrect") );
 }
 
-KoTextEditingPlugin *AutocorrectFactory::create() const
+KoTextEditingPlugin *AutocorrectFactory::create(KoResourceManager *) const
 {
     return new Autocorrect();
 }

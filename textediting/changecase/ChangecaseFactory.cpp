@@ -29,7 +29,7 @@ ChangecaseFactory::ChangecaseFactory(QObject *parent)
     setTitle(i18n ("Change Case...") );
 }
 
-KoTextEditingPlugin *ChangecaseFactory::create() const
+KoTextEditingPlugin *ChangecaseFactory::create(KoResourceManager *) const
 {
     return new Changecase();
 }

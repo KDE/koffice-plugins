@@ -29,7 +29,7 @@ public:
     explicit ChangecaseFactory(QObject *parent);
     ~ChangecaseFactory() {}
 
-    KoTextEditingPlugin *create() const;
+    KoTextEditingPlugin *create(KoResourceManager *docManager) const;
 };
 
 #endif

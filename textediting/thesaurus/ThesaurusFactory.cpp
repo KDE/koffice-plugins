@@ -27,7 +27,7 @@ ThesaurusFactory::ThesaurusFactory(QObject *parent)
     setTitle("Thesaurus");
 }
 
-KoTextEditingPlugin *ThesaurusFactory::create() const
+KoTextEditingPlugin *ThesaurusFactory::create(KoResourceManager *) const
 {
     return new Thesaurus();
 }
