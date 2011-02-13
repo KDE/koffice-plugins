@@ -1,5 +1,26 @@
 [Desktop Entry]
 Name=Plugin Shape
+Name[ca]=Forma de connector
+Name[ca@valencia]=Forma de connector
+Name[da]=Plugin-form
+Name[de]=Modul-Objekt
+Name[en_GB]=Plugin Shape
+Name[es]=Forma del complemento
+Name[et]=Pluginakujund
+Name[fr]=Module externe de forme
+Name[ga]=Giuirléid Bhreiseáin
+Name[it]=Forma di estensione
+Name[ja]=プラグインシェイプ
+Name[nb]=Form-programtillegg
+Name[nds]=Form »Moduul«
+Name[nl]=Plugin voor vorm
+Name[pt]=Forma de 'Plugin'
+Name[pt_BR]=Forma do Plugin
+Name[sv]=Insticksform
+Name[uk]=Форма додатка
+Name[wa]=Fôme Tchôke-divins
+Name[x-test]=xxPlugin Shapexx
+Name[zh_TW]=外掛程式元件 
 X-KDE-ServiceTypes=KOffice/Shape
 Type=Service
 X-KDE-Library=pluginshape
