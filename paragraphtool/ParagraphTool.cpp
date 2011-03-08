@@ -202,7 +202,7 @@ void ParagraphTool::keyReleaseEvent(QKeyEvent *event)
 
 void ParagraphTool::activate(ToolActivation, const QSet<KoShape*> &)
 {
-    useCursor(Qt::ArrowCursor);
+    setCursor(Qt::ArrowCursor);
 }
 
 void ParagraphTool::deactivate()

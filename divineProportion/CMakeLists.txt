@@ -1,7 +1,5 @@
 project( divineProportion)
 
-include_directories( ${KOMAIN_INCLUDES} ${FLAKE_INCLUDES} )
-
 SET ( divineProportionShape_SRCS
     DivineProportionPlugin.cpp
     DivineProportionShape.cpp

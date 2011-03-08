@@ -97,7 +97,7 @@ void DivineProportionTool::activate(ToolActivation toolActivation, const QSet<Ko
         emit done();
         return;
     }
-    //useCursor() // lets keep the forbidden cursor for now; as this tool doesn't really allow mouse interaction anyway
+    //setCursor() // lets keep the forbidden cursor for now; as this tool doesn't really allow mouse interaction anyway
 
     updateActions();
 }
