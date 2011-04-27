@@ -27,13 +27,12 @@
  */
 class Factory : public KoDockFactoryBase
 {
+    Q_OBJECT
 public:
     /// constructor
-    Factory();
+    Factory(QObject *parent);
 
-    virtual QString id() const;
-    KoDockFactoryBase::DockPosition defaultDockPosition() const;
-    QDockWidget* createDockWidget();
+    virtual QDockWidget *createDockWidget();
 };
 
 #endif

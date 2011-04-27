@@ -26,10 +26,10 @@
 K_PLUGIN_FACTORY(PluginFactory, registerPlugin<Plugin>();)
 K_EXPORT_PLUGIN(PluginFactory("koffice-simpletextedit"))
 
-Plugin::Plugin( QObject *parent, const QVariantList& )
+Plugin::Plugin(QObject *parent, const QVariantList&)
     : QObject(parent)
 {
-    KoDockRegistry::instance()->add( new Factory() );
+    KoDockRegistry::instance()->add(new Factory(parent));
 }
 
 #include <Plugin.moc>

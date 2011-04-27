@@ -22,18 +22,10 @@
 
 #include <QDockWidget>
 
-Factory::Factory()
+Factory::Factory(QObject *parent)
+    : KoDockFactoryBase(parent, "SimpleTextEditor")
 {
-}
-
-QString Factory::id() const
-{
-    return QString("Simple Text Editor");
-}
-
-KoDockFactoryBase::DockPosition Factory::defaultDockPosition() const
-{
-     return DockMinimized;
+    setDefaultDockPosition(DockMinimized);
 }
 
 QDockWidget* Factory::createDockWidget()
