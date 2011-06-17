@@ -26,8 +26,8 @@
 #include <QList>
 #include <QTextBlock>
 
-class KoCanvasBase;
-class KoShape;
+class KCanvasBase;
+class KShape;
 
 class QTextDocument;
 class QTextLayout;
@@ -36,7 +36,7 @@ class ParagraphBase : public QObject
 {
     Q_OBJECT
 public:
-    explicit ParagraphBase(QObject *parent, KoCanvasBase *canvas);
+    explicit ParagraphBase(QObject *parent, KCanvasBase *canvas);
     ~ParagraphBase();
 
     // activate the paragraph at the specified position on the canvas
@@ -65,8 +65,8 @@ public:
         return textBlock().layout();
     }
 
-    qreal shapeTop(const KoShape *shape) const;
-    qreal shapeBottom(const KoShape *shape) const;
+    qreal shapeTop(const KShape *shape) const;
+    qreal shapeBottom(const KShape *shape) const;
 
     bool needsRepaint() const;
 
@@ -81,20 +81,20 @@ public slots:
 protected:
     bool m_needsRepaint;
 
-    KoCanvasBase *canvas() { return m_canvas; }
+    KCanvasBase *canvas() { return m_canvas; }
     QTextCursor cursor() { return m_cursor; }
-    KoParagraphStyle *paragraphStyle() const { return m_paragraphStyle; }
+    KParagraphStyle *paragraphStyle() const { return m_paragraphStyle; }
 
     QList<ParagraphFragment> fragments() { return m_fragments; }
     virtual void addFragments();
 
-    bool shapeContainsBlock(const KoShape *shape);
+    bool shapeContainsBlock(const KShape *shape);
 
 private:
-    KoCanvasBase *m_canvas;
+    KCanvasBase *m_canvas;
     QTextCursor m_cursor;
     QTextDocument *m_document;
-    KoParagraphStyle *m_paragraphStyle;
+    KParagraphStyle *m_paragraphStyle;
 
     QList<ParagraphFragment> m_fragments;
 };

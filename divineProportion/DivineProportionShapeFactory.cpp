@@ -21,30 +21,30 @@
 #include "Intro.h"
 
 #include <klocale.h>
-#include <KoShapeLoadingContext.h>
+#include <KShapeLoadingContext.h>
 
 DivineProportionShapeFactory::DivineProportionShapeFactory(QObject *parent)
-    : KoShapeFactoryBase(parent, DivineProportionShape_SHAPEID, i18n("DivineProportion"))
+    : KShapeFactoryBase(parent, DivineProportionShape_SHAPEID, i18n("DivineProportion"))
 {
     setToolTip(i18n("A Shape That Shows DivineProportion"));
     setIcon( "divine-shape" );
 }
 
-KoShape *DivineProportionShapeFactory::createDefaultShape(KoResourceManager *) const
+KShape *DivineProportionShapeFactory::createDefaultShape(KResourceManager *) const
 {
     DivineProportionShape *shape = new DivineProportionShape();
     shape->setShapeId(DivineProportionShape_SHAPEID);
     return shape;
 }
 
-QList<KoShapeConfigWidgetBase*> DivineProportionShapeFactory::createShapeOptionPanels()
+QList<KShapeConfigWidgetBase*> DivineProportionShapeFactory::createShapeOptionPanels()
 {
-    QList<KoShapeConfigWidgetBase*> answer;
+    QList<KShapeConfigWidgetBase*> answer;
     answer.append(new Intro());
     return answer;
 }
 
-bool DivineProportionShapeFactory::supports(const KoXmlElement & e, KoShapeLoadingContext &context) const
+bool DivineProportionShapeFactory::supports(const KXmlElement & e, KShapeLoadingContext &context) const
 {
     Q_UNUSED(e);
     Q_UNUSED(context);

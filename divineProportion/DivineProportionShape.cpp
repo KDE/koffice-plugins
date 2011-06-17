@@ -38,7 +38,7 @@ DivineProportionShape::~DivineProportionShape()
 {
 }
 
-void DivineProportionShape::paint(QPainter &painter, const KoViewConverter &converter)
+void DivineProportionShape::paint(QPainter &painter, const KViewConverter &converter)
 {
     if (m_printable) {
         applyConversion(painter, converter);
@@ -46,7 +46,7 @@ void DivineProportionShape::paint(QPainter &painter, const KoViewConverter &conv
     }
 }
 
-void DivineProportionShape::paintDecorations(QPainter &painter, const KoViewConverter &converter, const KoCanvasBase *canvas)
+void DivineProportionShape::paintDecorations(QPainter &painter, const KViewConverter &converter, const KCanvasBase *canvas)
 {
     Q_UNUSED(canvas);
     if (!m_printable) {
@@ -79,12 +79,12 @@ void DivineProportionShape::draw(QPainter &painter)
     }
 }
 
-void DivineProportionShape::saveOdf(KoShapeSavingContext & /*context*/) const
+void DivineProportionShape::saveOdf(KShapeSavingContext & /*context*/) const
 {
     // TODO
 }
 
-bool DivineProportionShape::loadOdf( const KoXmlElement & /*element*/, KoShapeLoadingContext & /*context*/ )
+bool DivineProportionShape::loadOdf( const KXmlElement & /*element*/, KShapeLoadingContext & /*context*/ )
 {
     return false; // TODO
 }

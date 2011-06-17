@@ -20,13 +20,13 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include <KoShape.h>
+#include <KShape.h>
 
 class QPainter;
 
 #define DivineProportionShape_SHAPEID "DivineProportionShapeID"
 
-class DivineProportionShape : public KoShape {
+class DivineProportionShape : public KShape {
 public:
     DivineProportionShape();
     virtual ~DivineProportionShape();
@@ -40,13 +40,13 @@ public:
     };
 
     /// reimplemented to be empty (this shape is fully non-printing)
-    void paint(QPainter &painter, const KoViewConverter &converter);
+    void paint(QPainter &painter, const KViewConverter &converter);
     /// reimplemented
-    void paintDecorations(QPainter &painter, const KoViewConverter &converter, const KoCanvasBase *canvas);
+    void paintDecorations(QPainter &painter, const KViewConverter &converter, const KCanvasBase *canvas);
     /// reimplemented
-    virtual void saveOdf(KoShapeSavingContext & context) const;
+    virtual void saveOdf(KShapeSavingContext & context) const;
     /// reimplemented
-    virtual bool loadOdf( const KoXmlElement & element, KoShapeLoadingContext &context );
+    virtual bool loadOdf( const KXmlElement & element, KShapeLoadingContext &context );
 
     void setOrientation(Orientation orientation);
     Orientation orientation() const { return m_orientation; }

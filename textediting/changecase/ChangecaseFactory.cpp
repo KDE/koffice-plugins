@@ -23,13 +23,13 @@
 #include <klocale.h>
 
 ChangecaseFactory::ChangecaseFactory(QObject *parent)
-    : KoTextEditingFactory(parent, "changecase")
+    : KTextEditingFactory(parent, "changecase")
 {
     setShowInMenu(true);
     setTitle(i18n ("Change Case...") );
 }
 
-KoTextEditingPlugin *ChangecaseFactory::create(KoResourceManager *) const
+KTextEditingPlugin *ChangecaseFactory::create(KResourceManager *) const
 {
     return new Changecase();
 }

@@ -23,9 +23,9 @@
 #include "BgSpellCheck.h"
 #include "SpellCheckMenu.h"
 
-#include <KoCharacterStyle.h>
+#include <KCharacterStyle.h>
 #include <KoText.h>
-#include <KoResourceManager.h>
+#include <KResourceManager.h>
 
 #include <KLocale>
 #include <KDebug>
@@ -78,7 +78,7 @@ SpellCheck::SpellCheck()
             this, SLOT(clearHighlightMisspelled(int)));
 }
 
-void SpellCheck::setResourceManager(KoResourceManager *rm)
+void SpellCheck::setResourceManager(KResourceManager *rm)
 {
     Q_ASSERT(m_resourceManager == 0); // need to disconnect otherwise
     m_resourceManager = rm;

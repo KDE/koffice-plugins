@@ -24,13 +24,13 @@
 #include <KLocale>
 
 SpellCheckFactory::SpellCheckFactory(QObject *parent)
-    : KoTextEditingFactory(parent, "spellcheck")
+    : KTextEditingFactory(parent, "spellcheck")
 {
     setShowInMenu(true);
     setTitle(i18n("Spell Check"));
 }
 
-KoTextEditingPlugin *SpellCheckFactory::create(KoResourceManager *docResources) const
+KTextEditingPlugin *SpellCheckFactory::create(KResourceManager *docResources) const
 {
     SpellCheck *sp = new SpellCheck();
     sp->setResourceManager(docResources);

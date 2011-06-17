@@ -22,30 +22,30 @@
 
 #include "DivineProportionShape.h"
 
-#include <KoToolBase.h>
+#include <KToolBase.h>
 
 class QAction;
 
 /**
  * This is the tool for the text-shape (which is a flake-based plugin).
  */
-class DivineProportionTool : public KoToolBase {
+class DivineProportionTool : public KToolBase {
     Q_OBJECT
 public:
-    explicit DivineProportionTool(KoCanvasBase *canvas);
+    explicit DivineProportionTool(KCanvasBase *canvas);
     ~DivineProportionTool();
 
     /// reimplemented from superclass
-    virtual void paint( QPainter &painter, const KoViewConverter &converter );
+    virtual void paint( QPainter &painter, const KViewConverter &converter );
 
     /// reimplemented from superclass
-    virtual void mousePressEvent( KoPointerEvent *event ) ;
+    virtual void mousePressEvent( KPointerEvent *event ) ;
     /// reimplemented from superclass
-    virtual void mouseMoveEvent( KoPointerEvent *event );
+    virtual void mouseMoveEvent( KPointerEvent *event );
     /// reimplemented from superclass
-    virtual void mouseReleaseEvent( KoPointerEvent *event );
+    virtual void mouseReleaseEvent( KPointerEvent *event );
     /// reimplemented from superclass
-    virtual void activate(ToolActivation toolActivation, const QSet<KoShape*> &shapes);
+    virtual void activate(ToolActivation toolActivation, const QSet<KShape*> &shapes);
     /// reimplemented from superclass
     virtual void deactivate();
     /// reimplemented from superclass

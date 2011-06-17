@@ -20,10 +20,10 @@
 #include "Panel.h"
 #include "ActionHelper.h"
 
-#include <KoDockRegistry.h>
-#include <KoCanvasBase.h>
-#include <KoToolProxy.h>
-#include <KoResourceManager.h>
+#include <KDockRegistry.h>
+#include <KCanvasBase.h>
+#include <KToolProxy.h>
+#include <KResourceManager.h>
 #include <KoTextEditor.h>
 #include <KoText.h>
 
@@ -99,7 +99,7 @@ void Panel::setInitialButtonIcon(QToolButton *button, const QString &name) const
     button->setIcon(KIcon("koffice_simple_format_"+ name +"_inactive"));
 }
 
-void Panel::setCanvas (KoCanvasBase *canvas)
+void Panel::setCanvas (KCanvasBase *canvas)
 {
     m_canvas = canvas;
     Q_ASSERT(m_canvas);

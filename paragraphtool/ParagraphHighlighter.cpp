@@ -19,21 +19,21 @@
 
 #include "ParagraphHighlighter.h"
 
-#include <KoShape.h>
-#include <KoTextShapeData.h>
+#include <KShape.h>
+#include <KTextShapeData.h>
 
 #include <QPainter>
 #include <QTextLayout>
 
 
-ParagraphHighlighter::ParagraphHighlighter(QObject *parent, KoCanvasBase *canvas)
+ParagraphHighlighter::ParagraphHighlighter(QObject *parent, KCanvasBase *canvas)
         : ParagraphBase(parent, canvas)
 {}
 
 ParagraphHighlighter::~ParagraphHighlighter()
 {}
 
-void ParagraphHighlighter::paint(QPainter &painter, const KoViewConverter &converter)
+void ParagraphHighlighter::paint(QPainter &painter, const KViewConverter &converter)
 {
     m_needsRepaint = false;
 
@@ -42,8 +42,8 @@ void ParagraphHighlighter::paint(QPainter &painter, const KoViewConverter &conve
     }
 
     foreach (const ParagraphFragment &fragment, fragments()) {
-        KoShape *shape = fragment.shape();
-        KoTextShapeData *textShapeData = qobject_cast<KoTextShapeData*>(shape->userData());
+        KShape *shape = fragment.shape();
+        KTextShapeData *textShapeData = qobject_cast<KTextShapeData*>(shape->userData());
         Q_ASSERT(textShapeData);
 
         painter.save();
@@ -53,7 +53,7 @@ void ParagraphHighlighter::paint(QPainter &painter, const KoViewConverter &conve
 
         painter.setPen(Qt::black);
         painter.setTransform(shape->absoluteTransformation(&converter) * painter.transform());
-        KoShape::applyConversion(painter, converter);
+        KShape::applyConversion(painter, converter);
         painter.translate(0.0, -shapeTop);
 
         QTextLayout *layout = textBlock().layout();

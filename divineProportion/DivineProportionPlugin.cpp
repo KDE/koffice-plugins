@@ -20,8 +20,8 @@
 #include "DivineProportionToolFactory.h"
 #include "DivineProportionShapeFactory.h"
 
-#include <KoShapeRegistry.h>
-#include <KoToolRegistry.h>
+#include <KShapeRegistry.h>
+#include <KToolRegistry.h>
 
 #include <kpluginfactory.h>
 
@@ -31,8 +31,8 @@ K_EXPORT_PLUGIN(DivineProportionPluginFactory("DivineProportion"))
 DivineProportionPlugin::DivineProportionPlugin(QObject * parent, const QVariantList &)
     : QObject(parent)
 {
-    KoToolRegistry::instance()->add(new DivineProportionToolFactory(parent));
-    KoShapeRegistry::instance()->add(new DivineProportionShapeFactory(parent));
+    KToolRegistry::instance()->add(new DivineProportionToolFactory(parent));
+    KShapeRegistry::instance()->add(new DivineProportionShapeFactory(parent));
 }
 
 #include <DivineProportionPlugin.moc>

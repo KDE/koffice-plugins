@@ -19,14 +19,14 @@
 
 #include "ParagraphFragment.h"
 
-#include <KoParagraphStyle.h>
-#include <KoShape.h>
-#include <KoTextBlockData.h>
+#include <KParagraphStyle.h>
+#include <KShape.h>
+#include <KTextBlockData.h>
 
 #include <QTextBlock>
 #include <QTextLayout>
 
-ParagraphFragment::ParagraphFragment(KoShape *shape, const QTextBlock &textBlock, KoParagraphStyle *style)
+ParagraphFragment::ParagraphFragment(KShape *shape, const QTextBlock &textBlock, KParagraphStyle *style)
         : m_shape(shape)
 {
     QTextLayout *layout = textBlock.layout();
@@ -42,7 +42,7 @@ ParagraphFragment::ParagraphFragment(KoShape *shape, const QTextBlock &textBlock
     m_firstLine.setRight(m_border.right() - style->rightMargin());
 
     // counter rectangle
-    KoTextBlockData *blockData = static_cast<KoTextBlockData*>(textBlock.userData());
+    KTextBlockData *blockData = static_cast<KTextBlockData*>(textBlock.userData());
     if (blockData != NULL) {
         m_counter = QRectF(blockData->counterPosition(), QSizeF(blockData->counterWidth() - blockData->counterSpacing(), m_firstLine.height()));
     }

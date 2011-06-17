@@ -23,13 +23,13 @@
 
 class DivineProportionShape;
 
-#include <KoShapeConfigWidgetBase.h>
+#include <KShapeConfigWidgetBase.h>
 
-class Intro : public KoShapeConfigWidgetBase {
+class Intro : public KShapeConfigWidgetBase {
 public:
     Intro();
 
-    virtual void open(KoShape *shape);
+    virtual void open(KShape *shape);
     virtual void save();
     virtual KAction *createAction();
 

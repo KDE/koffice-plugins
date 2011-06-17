@@ -24,11 +24,11 @@
 #include "ParagraphEditor.h"
 #include "ParagraphHighlighter.h"
 
-#include <KoToolBase.h>
+#include <KToolBase.h>
 
-class KoCanvasBase;
-class KoPointerEvent;
-class KoViewConverter;
+class KCanvasBase;
+class KPointerEvent;
+class KViewConverter;
 
 class QKeyEvent;
 class QWidget;
@@ -38,23 +38,23 @@ class QWidget;
  * It displays all paragraph formatting parameters directly on the canvas
  * and allows to modify them, too.
  */
-class ParagraphTool : public KoToolBase
+class ParagraphTool : public KToolBase
 {
     Q_OBJECT
 public:
-    explicit ParagraphTool(KoCanvasBase *canvas);
+    explicit ParagraphTool(KCanvasBase *canvas);
     ~ParagraphTool();
 
-    virtual void paint(QPainter &painter, const KoViewConverter &converter);
+    virtual void paint(QPainter &painter, const KViewConverter &converter);
 
-    virtual void mousePressEvent(KoPointerEvent *event);
-    virtual void mouseReleaseEvent(KoPointerEvent *event);
-    virtual void mouseMoveEvent(KoPointerEvent *event);
+    virtual void mousePressEvent(KPointerEvent *event);
+    virtual void mouseReleaseEvent(KPointerEvent *event);
+    virtual void mouseMoveEvent(KPointerEvent *event);
 
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
 
-    virtual void activate(ToolActivation toolActivation, const QSet<KoShape*> &shapes);
+    virtual void activate(ToolActivation toolActivation, const QSet<KShape*> &shapes);
     virtual void deactivate();
 
     virtual void repaintDecorations();

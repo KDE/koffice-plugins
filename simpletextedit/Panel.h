@@ -19,7 +19,7 @@
 #ifndef PANEL_H
 #define PANEL_H
 
-#include <KoCanvasObserverBase.h>
+#include <KCanvasObserverBase.h>
 
 #include <QDockWidget>
 #include <QHash>
@@ -29,13 +29,13 @@
 class KAction;
 class KoTextEditor;
 
-class Panel : public QDockWidget, public KoCanvasObserverBase {
+class Panel : public QDockWidget, public KCanvasObserverBase {
     Q_OBJECT
 public:
     Panel(QWidget *parent = 0);
     ~Panel();
 
-    virtual void setCanvas (KoCanvasBase *canvas);
+    virtual void setCanvas (KCanvasBase *canvas);
 
 private slots:
     void toolChangeDetected(const QString &toolId);
@@ -49,7 +49,7 @@ private:
     void setInitialButtonIcon(QToolButton *button, const QString &name) const;
     void applyAction(KAction *action, QToolButton *button, const QString &iconName, bool partOfGroup);
 
-    KoCanvasBase *m_canvas;
+    KCanvasBase *m_canvas;
     QObject *m_parent;
     KAction *m_style1, *m_style2, *m_style3;
     KoTextEditor *m_handler;

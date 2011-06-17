@@ -23,13 +23,13 @@
 #include <klocale.h>
 
 AutocorrectFactory::AutocorrectFactory(QObject *parent)
-    : KoTextEditingFactory(parent, "autocorrection")
+    : KTextEditingFactory(parent, "autocorrection")
 {
     setShowInMenu(true);
     setTitle(i18n ("Autocorrect") );
 }
 
-KoTextEditingPlugin *AutocorrectFactory::create(KoResourceManager *) const
+KTextEditingPlugin *AutocorrectFactory::create(KResourceManager *) const
 {
     return new Autocorrect();
 }

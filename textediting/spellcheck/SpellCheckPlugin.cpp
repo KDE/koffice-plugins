@@ -23,7 +23,7 @@
 #include <KPluginFactory>
 #include <KPluginLoader>
 
-#include <KoTextEditingRegistry.h>
+#include <KTextEditingRegistry.h>
 
 K_PLUGIN_FACTORY(SpellCheckPluginFactory, registerPlugin<SpellCheckPlugin>();)
 K_EXPORT_PLUGIN(SpellCheckPluginFactory("SpellCheckPlugin"))
@@ -31,7 +31,7 @@ K_EXPORT_PLUGIN(SpellCheckPluginFactory("SpellCheckPlugin"))
 SpellCheckPlugin::SpellCheckPlugin(QObject *parent, const QVariantList&)
     : QObject(parent)
 {
-    KoTextEditingRegistry::instance()->add(new SpellCheckFactory(parent));
+    KTextEditingRegistry::instance()->add(new SpellCheckFactory(parent));
 }
 
 #include <SpellCheckPlugin.moc>

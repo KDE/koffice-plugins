@@ -23,7 +23,7 @@
 #include <KPluginFactory>
 #include <KPluginLoader>
 
-#include <KoTextEditingRegistry.h>
+#include <KTextEditingRegistry.h>
 
 K_PLUGIN_FACTORY( ThesaurusPluginFactory, registerPlugin<ThesaurusPlugin>(); )
 K_EXPORT_PLUGIN( ThesaurusPluginFactory("ThesaurusPlugin") )
@@ -31,7 +31,7 @@ K_EXPORT_PLUGIN( ThesaurusPluginFactory("ThesaurusPlugin") )
 ThesaurusPlugin::ThesaurusPlugin(QObject *parent, const QVariantList&)
     : QObject(parent)
 {
-    KoTextEditingRegistry::instance()->add(new ThesaurusFactory(parent));
+    KTextEditingRegistry::instance()->add(new ThesaurusFactory(parent));
 }
 
 #include <ThesaurusPlugin.moc>

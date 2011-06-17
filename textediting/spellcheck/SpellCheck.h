@@ -22,7 +22,7 @@
 #ifndef SPELLCHECK_H
 #define SPELLCHECK_H
 
-#include <KoTextEditingPlugin.h>
+#include <KTextEditingPlugin.h>
 
 #include <sonnet/speller.h>
 #include <QTextCharFormat>
@@ -34,15 +34,15 @@
 class QTextDocument;
 class BgSpellCheck;
 class SpellCheckMenu;
-class KoResourceManager;
+class KResourceManager;
 
-class SpellCheck : public KoTextEditingPlugin
+class SpellCheck : public KTextEditingPlugin
 {
     Q_OBJECT
 public:
     SpellCheck();
 
-    void setResourceManager(KoResourceManager *rm);
+    void setResourceManager(KResourceManager *rm);
 
     /// reimplemented from superclass
     void finishedWord(QTextDocument *document, int cursorPosition);
@@ -121,7 +121,7 @@ private:
     };
     QList<BlockLayout> m_misspellings;
 
-    KoResourceManager *m_resourceManager;
+    KResourceManager *m_resourceManager;
 };
 
 #endif

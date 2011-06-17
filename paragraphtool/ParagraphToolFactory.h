@@ -20,17 +20,17 @@
 #ifndef PARAGRAPHTOOLFACTORY_H
 #define PARAGRAPHTOOLFACTORY_H
 
-#include <KoToolFactoryBase.h>
+#include <KToolFactoryBase.h>
 
 
-class ParagraphToolFactory : public KoToolFactoryBase
+class ParagraphToolFactory : public KToolFactoryBase
 {
     Q_OBJECT
 public:
     explicit ParagraphToolFactory(QObject *parent);
     ~ParagraphToolFactory();
 
-    KoToolBase * createTool(KoCanvasBase *canvas);
+    KToolBase * createTool(KCanvasBase *canvas);
 };
 
 #endif

@@ -25,24 +25,24 @@
 
 #include "PluginShape.h"
 
-#include <KoXmlNS.h>
-#include <KoShapeLoadingContext.h>
-#include "KoShapeControllerBase.h"
+#include <KOdfXmlNS.h>
+#include <KShapeLoadingContext.h>
+#include "KShapeControllerBase.h"
 
 #include <klocale.h>
 #include <kdebug.h>
 
 PluginShapeFactory::PluginShapeFactory(QObject *parent)
-    : KoShapeFactoryBase(parent, PLUGINSHAPEID, i18n("Plugin Placeholder"))
+    : KShapeFactoryBase(parent, PLUGINSHAPEID, i18n("Plugin Placeholder"))
 {
     setToolTip(i18n("Plugin Placeholder, embedded or fullscreen"));
     //setIcon("video-x-generic");
-    setOdfElementNames(KoXmlNS::draw, QStringList("plugin"));
+    setOdfElementNames(KOdfXmlNS::draw, QStringList("plugin"));
     setLoadingPriority(9);
     setHidden(true);
 }
 
-KoShape *PluginShapeFactory::createDefaultShape(KoResourceManager *documentResources) const
+KShape *PluginShapeFactory::createDefaultShape(KResourceManager *documentResources) const
 {
     Q_UNUSED(documentResources);
     PluginShape *defaultShape = new PluginShape();
@@ -50,10 +50,10 @@ KoShape *PluginShapeFactory::createDefaultShape(KoResourceManager *documentResou
     return defaultShape;
 }
 
-bool PluginShapeFactory::supports(const KoXmlElement &e, KoShapeLoadingContext &context) const
+bool PluginShapeFactory::supports(const KXmlElement &e, KShapeLoadingContext &context) const
 {
     Q_UNUSED(context);
-    return e.localName() == "plugin" && e.namespaceURI() == KoXmlNS::draw;
+    return e.localName() == "plugin" && e.namespaceURI() == KOdfXmlNS::draw;
 }
 
 

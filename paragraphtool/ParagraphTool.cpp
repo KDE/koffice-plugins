@@ -21,11 +21,11 @@
 #include "ParagraphTool.h"
 #include "dialogs/OptionWidget.h"
 
-#include <KoCanvasBase.h>
-#include <KoPointerEvent.h>
+#include <KCanvasBase.h>
+#include <KPointerEvent.h>
 
-ParagraphTool::ParagraphTool(KoCanvasBase *canvas)
-        : KoToolBase(canvas),
+ParagraphTool::ParagraphTool(KCanvasBase *canvas)
+        : KToolBase(canvas),
         m_paragraphEditor(this, canvas),
         m_paragraphHighlighter(this, canvas)
 {}
@@ -45,7 +45,7 @@ QWidget *ParagraphTool::createOptionWidget()
     return optionWidget;
 }
 
-void ParagraphTool::paint(QPainter &painter, const KoViewConverter &converter)
+void ParagraphTool::paint(QPainter &painter, const KViewConverter &converter)
 {
     m_paragraphEditor.paint(painter, converter);
 
@@ -78,7 +78,7 @@ void ParagraphTool::repaintDecorationsInternal()
     }
 }
 
-void ParagraphTool::mousePressEvent(KoPointerEvent *event)
+void ParagraphTool::mousePressEvent(KPointerEvent *event)
 {
     m_mousePosition = event->point;
 
@@ -108,7 +108,7 @@ void ParagraphTool::mousePressEvent(KoPointerEvent *event)
     repaintDecorationsInternal();
 }
 
-void ParagraphTool::mouseReleaseEvent(KoPointerEvent *event)
+void ParagraphTool::mouseReleaseEvent(KPointerEvent *event)
 {
     m_mousePosition = event->point;
 
@@ -120,7 +120,7 @@ void ParagraphTool::mouseReleaseEvent(KoPointerEvent *event)
     repaintDecorationsInternal();
 }
 
-void ParagraphTool::mouseMoveEvent(KoPointerEvent *event)
+void ParagraphTool::mouseMoveEvent(KPointerEvent *event)
 {
     m_mousePosition = event->point;
 
@@ -200,7 +200,7 @@ void ParagraphTool::keyReleaseEvent(QKeyEvent *event)
         m_paragraphEditor.toggleSmoothMovement();
 }
 
-void ParagraphTool::activate(ToolActivation, const QSet<KoShape*> &)
+void ParagraphTool::activate(ToolActivation, const QSet<KShape*> &)
 {
     setCursor(Qt::ArrowCursor);
 }

@@ -2,7 +2,7 @@
 
 #include "../BgSpellCheck.h"
 
-#include <KoCharacterStyle.h>
+#include <KCharacterStyle.h>
 
 #include <QTextDocument>
 #include <QTextBlock>
@@ -38,7 +38,7 @@ void TestSpellCheck::testFetchMoreText()
 
     QTextCursor cursor(&doc);
     QTextCharFormat cf;
-    cf.setProperty(KoCharacterStyle::Language, QVariant("pl"));
+    cf.setProperty(KCharacterStyle::Language, QVariant("pl"));
     cursor.setPosition(4, QTextCursor::KeepAnchor);
     cursor.mergeCharFormat(cf);
 
@@ -55,11 +55,11 @@ void TestSpellCheck::testFetchMoreText()
     cursor.movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor); // 'second'
     int position2 = cursor.anchor();
     int position3 = cursor.position();
-    cf.setProperty(KoCharacterStyle::Language, QVariant("br"));
+    cf.setProperty(KCharacterStyle::Language, QVariant("br"));
     cursor.mergeCharFormat(cf);
     cursor.movePosition(QTextCursor::NextWord, QTextCursor::MoveAnchor, 2);
     cursor.movePosition(QTextCursor::NextWord, QTextCursor::KeepAnchor); // 'with'
-    cf.setProperty(KoCharacterStyle::Language, QVariant("en"));
+    cf.setProperty(KCharacterStyle::Language, QVariant("en"));
     cursor.mergeCharFormat(cf);
 
     checker.startRun(&doc, 0, text.size());

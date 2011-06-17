@@ -19,7 +19,7 @@
 #include "ParagraphPlugin.h"
 #include "ParagraphToolFactory.h"
 
-#include <KoToolRegistry.h>
+#include <KToolRegistry.h>
 
 #include <kpluginfactory.h>
 
@@ -29,7 +29,7 @@ K_EXPORT_PLUGIN(ParagraphPluginFactory("ParagraphTool"))
 ParagraphPlugin::ParagraphPlugin(QObject * parent, const QVariantList &)
         : QObject(parent)
 {
-    KoToolRegistry::instance()->add(new ParagraphToolFactory(parent));
+    KToolRegistry::instance()->add(new ParagraphToolFactory(parent));
 }
 
 #include <ParagraphPlugin.moc>

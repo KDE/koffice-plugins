@@ -21,13 +21,13 @@
 #include "Thesaurus.h"
 
 ThesaurusFactory::ThesaurusFactory(QObject *parent)
-    : KoTextEditingFactory(parent, "thesaurustool")
+    : KTextEditingFactory(parent, "thesaurustool")
 {
     setShowInMenu(false);
     setTitle("Thesaurus");
 }
 
-KoTextEditingPlugin *ThesaurusFactory::create(KoResourceManager *) const
+KTextEditingPlugin *ThesaurusFactory::create(KResourceManager *) const
 {
     return new Thesaurus();
 }

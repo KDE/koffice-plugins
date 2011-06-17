@@ -20,7 +20,7 @@
 #ifndef AUTOCORRECT_H
 #define AUTOCORRECT_H
 
-#include <KoTextEditingPlugin.h>
+#include <KTextEditingPlugin.h>
 #include <QTextCursor>
 #include <QTextCharFormat>
 #include <QSet>
@@ -31,7 +31,7 @@
     QTextCharFormat format;
 }; */
 
-class Autocorrect : public KoTextEditingPlugin {
+class Autocorrect : public KTextEditingPlugin {
     Q_OBJECT
 
 public:

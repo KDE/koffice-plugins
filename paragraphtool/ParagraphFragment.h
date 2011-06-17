@@ -22,8 +22,8 @@
 
 #include <QRectF>
 
-class KoParagraphStyle;
-class KoShape;
+class KParagraphStyle;
+class KShape;
 class QTextBlock;
 
 /* ParagraphFragment is used by ParagraphTool to store information about a
@@ -35,11 +35,11 @@ class ParagraphFragment
 {
 public:
     ParagraphFragment() {};
-    ParagraphFragment(KoShape *shape, const QTextBlock &textBlock, KoParagraphStyle *style);
+    ParagraphFragment(KShape *shape, const QTextBlock &textBlock, KParagraphStyle *style);
 
     ~ParagraphFragment() {};
 
-    KoShape *shape() const { return m_shape; }
+    KShape *shape() const { return m_shape; }
 
     QRectF listCounter() const { return m_counter; }
     QRectF firstLine() const { return m_firstLine; }
@@ -49,7 +49,7 @@ public:
     bool isSingleLine() const { return m_isSingleLine; }
 
 private:
-    KoShape *m_shape;
+    KShape *m_shape;
 
     QRectF m_counter,
     m_firstLine,

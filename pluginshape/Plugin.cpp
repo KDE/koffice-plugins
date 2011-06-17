@@ -20,7 +20,7 @@
 #include "Plugin.h"
 #include "PluginShapeFactory.h"
 
-#include <KoShapeRegistry.h>
+#include <KShapeRegistry.h>
 
 #include <kpluginfactory.h>
 
@@ -31,7 +31,7 @@ K_EXPORT_PLUGIN(PluginFactory("pluginshape"))
 Plugin::Plugin(QObject *parent, const QVariantList &)
     : QObject(parent)
 {
-    KoShapeRegistry::instance()->add( new PluginShapeFactory(parent) );
+    KShapeRegistry::instance()->add( new PluginShapeFactory(parent) );
 }
 
 #include <Plugin.moc>

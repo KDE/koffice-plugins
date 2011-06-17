@@ -19,7 +19,7 @@
 #include "Plugin.h"
 #include "Factory.h"
 
-#include <KoDockRegistry.h>
+#include <KDockRegistry.h>
 
 #include <kpluginfactory.h>
 
@@ -29,7 +29,7 @@ K_EXPORT_PLUGIN(PluginFactory("koffice-simpletextedit"))
 Plugin::Plugin(QObject *parent, const QVariantList&)
     : QObject(parent)
 {
-    KoDockRegistry::instance()->add(new Factory(parent));
+    KDockRegistry::instance()->add(new Factory(parent));
 }
 
 #include <Plugin.moc>

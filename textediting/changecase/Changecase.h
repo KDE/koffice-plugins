@@ -22,12 +22,12 @@
 
 #include <QTextCursor>
 
-#include <KoTextEditingPlugin.h>
+#include <KTextEditingPlugin.h>
 
 class QTextDocument;
 class QRadioButton;
 
-class Changecase : public KoTextEditingPlugin
+class Changecase : public KTextEditingPlugin
 {
     Q_OBJECT
 public:

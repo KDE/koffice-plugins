@@ -20,16 +20,16 @@
 
 #include "ParagraphBase.h"
 
-#include <KoCanvasBase.h>
-#include <KoShape.h>
-#include <KoShapeManager.h>
-#include <KoTextDocumentLayout.h>
-#include <KoTextShapeData.h>
-#include <KoParagraphStyle.h>
+#include <KCanvasBase.h>
+#include <KShape.h>
+#include <KShapeManager.h>
+#include <KTextDocumentLayout.h>
+#include <KTextShapeData.h>
+#include <KParagraphStyle.h>
 
 #include <KLocale>
 
-ParagraphBase::ParagraphBase(QObject *parent, KoCanvasBase *canvas)
+ParagraphBase::ParagraphBase(QObject *parent, KCanvasBase *canvas)
         : QObject(parent),
         m_needsRepaint(false),
         m_canvas(canvas),
@@ -51,10 +51,10 @@ bool ParagraphBase::hasActiveTextBlock() const {
 void ParagraphBase::activateTextBlockAt(const QPointF &point)
 {
 
-    KoShape *shape = 0;
-    KoTextShapeData *textShapeData = 0;
-    foreach (KoShape *s, m_canvas->shapeManager()->shapesAt(QRectF(point, QSizeF(4, 4)))) {
-        textShapeData = qobject_cast<KoTextShapeData*>(s->userData());
+    KShape *shape = 0;
+    KTextShapeData *textShapeData = 0;
+    foreach (KShape *s, m_canvas->shapeManager()->shapesAt(QRectF(point, QSizeF(4, 4)))) {
+        textShapeData = qobject_cast<KTextShapeData*>(s->userData());
         if (textShapeData) { // found it!
             shape = s;
             break;
@@ -127,7 +127,7 @@ void ParagraphBase::activateTextBlock(QTextBlock newBlock, QTextDocument *docume
     m_cursor = QTextCursor(newBlock);
 
     delete m_paragraphStyle;
-    m_paragraphStyle = KoParagraphStyle::fromBlock(m_cursor.block(), this);
+    m_paragraphStyle = KParagraphStyle::fromBlock(m_cursor.block(), this);
 
     addFragments();
 
@@ -150,18 +150,18 @@ void ParagraphBase::addFragments()
 {
     m_fragments.clear();
 
-    KoTextDocumentLayout *layout = qobject_cast<KoTextDocumentLayout*>(textBlock().document()->documentLayout());
+    KTextDocumentLayout *layout = qobject_cast<KTextDocumentLayout*>(textBlock().document()->documentLayout());
     Q_ASSERT(layout);
 
-    QList<KoShape*> shapes = layout->shapes();
-    foreach(KoShape *shape, shapes) {
+    QList<KShape*> shapes = layout->shapes();
+    foreach(KShape *shape, shapes) {
         if (shapeContainsBlock(shape)) {
             m_fragments << ParagraphFragment(shape, textBlock(), m_paragraphStyle);
         }
     }
 }
 
-bool ParagraphBase::shapeContainsBlock(const KoShape *shape)
+bool ParagraphBase::shapeContainsBlock(const KShape *shape)
 {
     QTextLayout *layout = textBlock().layout();
     qreal blockStart = layout->lineAt(0).y();
@@ -172,15 +172,15 @@ bool ParagraphBase::shapeContainsBlock(const KoShape *shape)
     return (blockEnd >= shapeTop(shape) && blockStart < shapeBottom(shape));
 }
 
-qreal ParagraphBase::shapeTop(const KoShape *shape) const
+qreal ParagraphBase::shapeTop(const KShape *shape) const
 {
-    KoTextShapeData *textShapeData = qobject_cast<KoTextShapeData*>(shape->userData());
+    KTextShapeData *textShapeData = qobject_cast<KTextShapeData*>(shape->userData());
     Q_ASSERT(textShapeData);
 
     return textShapeData->documentOffset();
 }
 
-qreal ParagraphBase::shapeBottom(const KoShape *shape) const
+qreal ParagraphBase::shapeBottom(const KShape *shape) const
 {
     return shapeTop(shape) + shape->size().height();
 }
@@ -197,7 +197,7 @@ bool ParagraphBase::needsRepaint() const
 
 QString ParagraphBase::styleName() const
 {
-    KoParagraphStyle *style = paragraphStyle();
+    KParagraphStyle *style = paragraphStyle();
     while (style != NULL) {
         QString name = style->name();
         if (!name.isNull() && !name.isEmpty()) {

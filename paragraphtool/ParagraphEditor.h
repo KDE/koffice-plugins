@@ -24,9 +24,9 @@
 #include "ParagraphBase.h"
 #include "Ruler.h"
 
-class KoParagraphStyle;
-class KoCanvasBase;
-class KoViewConverter;
+class KParagraphStyle;
+class KCanvasBase;
+class KViewConverter;
 
 class QObject;
 class QPainter;
@@ -53,19 +53,19 @@ class ParagraphEditor : public ParagraphBase
 {
     Q_OBJECT
 public:
-    explicit ParagraphEditor(QObject *parent, KoCanvasBase *canvas);
+    explicit ParagraphEditor(QObject *parent, KCanvasBase *canvas);
     ~ParagraphEditor();
 
     void initializeRuler(Ruler &ruler, const QString &name, int options = 0);
 
-    void paint(QPainter &painter, const KoViewConverter &converter);
+    void paint(QPainter &painter, const KViewConverter &converter);
 
     QRectF dirtyRectangle(bool updateWholeRegion = false);
 
     void loadRulers();
 
     // paint a label at the specified position
-    void paintLabel(QPainter &painter, const KoViewConverter &converter) const;
+    void paintLabel(QPainter &painter, const KViewConverter &converter) const;
 
     bool hasActiveRuler() const {
         return m_activeRuler != noRuler;
@@ -140,7 +140,7 @@ protected:
 private:
     void initRulerFragments(const ParagraphFragment *fragment, Ruler *rulers) const;
     
-    KoParagraphStyle *m_paragraphStyle;
+    KParagraphStyle *m_paragraphStyle;
 
     Ruler m_rulers[maxRuler];
 

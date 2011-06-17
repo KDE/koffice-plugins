@@ -20,16 +20,16 @@
 #ifndef CHANGECASE_FACTORY
 #define CHANGECASE_FACTORY
 
-#include <KoTextEditingFactory.h>
+#include <KTextEditingFactory.h>
 
-class KoTextEditingPlugin;
+class KTextEditingPlugin;
 
-class ChangecaseFactory : public KoTextEditingFactory {
+class ChangecaseFactory : public KTextEditingFactory {
 public:
     explicit ChangecaseFactory(QObject *parent);
     ~ChangecaseFactory() {}
 
-    KoTextEditingPlugin *create(KoResourceManager *docManager) const;
+    KTextEditingPlugin *create(KResourceManager *docManager) const;
 };
 
 #endif

@@ -20,16 +20,16 @@
 #ifndef SPELLCHECK_FACTORY
 #define SPELLCHECK_FACTORY
 
-#include <KoTextEditingFactory.h>
+#include <KTextEditingFactory.h>
 
-class KoTextEditingPlugin;
+class KTextEditingPlugin;
 
-class SpellCheckFactory : public KoTextEditingFactory
+class SpellCheckFactory : public KTextEditingFactory
 {
 public:
     explicit SpellCheckFactory(QObject *parent);
 
-    KoTextEditingPlugin *create(KoResourceManager *docResources) const;
+    KTextEditingPlugin *create(KResourceManager *docResources) const;
 };
 
 #endif

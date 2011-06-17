@@ -24,8 +24,8 @@
 
 #include <QRectF>
 
-class KoCanvasBase;
-class KoViewConverter;
+class KCanvasBase;
+class KViewConverter;
 
 class QPainter;
 
@@ -36,10 +36,10 @@ class ParagraphHighlighter : public ParagraphBase
 {
     Q_OBJECT
 public:
-    explicit ParagraphHighlighter(QObject *parent, KoCanvasBase *canvas);
+    explicit ParagraphHighlighter(QObject *parent, KCanvasBase *canvas);
     ~ParagraphHighlighter();
 
-    void paint(QPainter &painter, const KoViewConverter &converter);
+    void paint(QPainter &painter, const KViewConverter &converter);
 
     QRectF dirtyRectangle();
 

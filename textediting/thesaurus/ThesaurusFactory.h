@@ -20,16 +20,16 @@
 #ifndef THESAURUS_FACTORY
 #define THESAURUS_FACTORY
 
-#include <KoTextEditingFactory.h>
+#include <KTextEditingFactory.h>
 
-class KoTextEditingPlugin;
+class KTextEditingPlugin;
 
-class ThesaurusFactory : public KoTextEditingFactory {
+class ThesaurusFactory : public KTextEditingFactory {
 public:
     explicit ThesaurusFactory(QObject *parent);
     ~ThesaurusFactory() {}
 
-    KoTextEditingPlugin *create(KoResourceManager *docRm) const;
+    KTextEditingPlugin *create(KResourceManager *docRm) const;
 };
 
 #endif

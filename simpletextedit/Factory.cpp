@@ -23,7 +23,7 @@
 #include <QDockWidget>
 
 Factory::Factory(QObject *parent)
-    : KoDockFactoryBase(parent, "SimpleTextEditor")
+    : KDockFactoryBase(parent, "SimpleTextEditor")
 {
     setDefaultDockPosition(DockMinimized);
 }

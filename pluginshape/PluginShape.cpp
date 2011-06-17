@@ -20,14 +20,14 @@
 
 #include "PluginShape.h"
 
-#include <KoViewConverter.h>
-#include <KoShapeLoadingContext.h>
-#include <KoOdfLoadingContext.h>
-#include <KoShapeSavingContext.h>
-#include <KoXmlWriter.h>
-#include <KoXmlNS.h>
-#include <KoStoreDevice.h>
-#include <KoUnit.h>
+#include <KViewConverter.h>
+#include <KShapeLoadingContext.h>
+#include <KOdfLoadingContext.h>
+#include <KShapeSavingContext.h>
+#include <KXmlWriter.h>
+#include <KOdfXmlNS.h>
+#include <KOdfStorageDevice.h>
+#include <KUnit.h>
 
 #include <QPainter>
 #include <kdebug.h>
@@ -35,7 +35,7 @@
 
 
 PluginShape::PluginShape()
-    : KoFrameShape(KoXmlNS::draw, "plugin")
+    : KFrameShape(KOdfXmlNS::draw, "plugin")
 {
     setKeepAspectRatio(true);
 }
@@ -44,7 +44,7 @@ PluginShape::~PluginShape()
 {
 }
 
-void PluginShape::paint(QPainter &painter, const KoViewConverter &converter)
+void PluginShape::paint(QPainter &painter, const KViewConverter &converter)
 {
     QRectF pixelsF = converter.documentToView(QRectF(QPointF(0,0), size()));
     painter.fillRect(pixelsF, QColor(Qt::yellow));
@@ -56,9 +56,9 @@ void PluginShape::paint(QPainter &painter, const KoViewConverter &converter)
     painter.drawText(pixelsF, Qt::AlignCenter, i18n("Plugin of mimetype: %1").arg(mimetype));
 }
 
-void PluginShape::saveOdf(KoShapeSavingContext &context) const
+void PluginShape::saveOdf(KShapeSavingContext &context) const
 {
-    KoXmlWriter &writer = context.xmlWriter();
+    KXmlWriter &writer = context.xmlWriter();
 
     writer.startElement("draw:frame");
     saveOdfAttributes(context, OdfAllAttributes);
@@ -84,13 +84,13 @@ void PluginShape::saveOdf(KoShapeSavingContext &context) const
 
 }
 
-bool PluginShape::loadOdf(const KoXmlElement &element, KoShapeLoadingContext &context)
+bool PluginShape::loadOdf(const KXmlElement &element, KShapeLoadingContext &context)
 {
     loadOdfAttributes(element, context, OdfAllAttributes);
     return loadOdfFrame(element, context);
 }
 
-bool PluginShape::loadOdfFrameElement(const KoXmlElement &element, KoShapeLoadingContext &context)
+bool PluginShape::loadOdfFrameElement(const KXmlElement &element, KShapeLoadingContext &context)
 {
     Q_UNUSED(context);
     if(element.isNull()) {
@@ -98,22 +98,22 @@ bool PluginShape::loadOdfFrameElement(const KoXmlElement &element, KoShapeLoadin
     }
 
     if(element.localName() == "plugin") {
-        m_mimetype  = element.attributeNS(KoXmlNS::draw, "mime-type", QString::null);
-        m_xlinktype  = element.attributeNS(KoXmlNS::xlink, "type", QString::null);
-        m_xlinkshow  = element.attributeNS(KoXmlNS::xlink, "show", QString::null);
-        m_xlinkactuate  = element.attributeNS(KoXmlNS::xlink, "actuate", QString::null);
-        m_xlinkhref  = element.attributeNS(KoXmlNS::xlink, "href", QString::null);
+        m_mimetype  = element.attributeNS(KOdfXmlNS::draw, "mime-type", QString::null);
+        m_xlinktype  = element.attributeNS(KOdfXmlNS::xlink, "type", QString::null);
+        m_xlinkshow  = element.attributeNS(KOdfXmlNS::xlink, "show", QString::null);
+        m_xlinkactuate  = element.attributeNS(KOdfXmlNS::xlink, "actuate", QString::null);
+        m_xlinkhref  = element.attributeNS(KOdfXmlNS::xlink, "href", QString::null);
         m_xmlid = element.attribute("xml:id", QString::null);
         m_drawParams.clear();
         if(element.hasChildNodes()) {
-            KoXmlNode node = element.firstChild();
+            KXmlNode node = element.firstChild();
             while(!node.isNull()) {
                 if(node.isElement()) {
-                    KoXmlElement nodeElement = node.toElement();
+                    KXmlElement nodeElement = node.toElement();
                     if(nodeElement.localName() == "param") {
-                        QString name = nodeElement.attributeNS(KoXmlNS::draw, "name", QString::null);
+                        QString name = nodeElement.attributeNS(KOdfXmlNS::draw, "name", QString::null);
                         if(!name.isNull()) {
-                            m_drawParams.insert(name,nodeElement.attributeNS(KoXmlNS::draw, "value", QString::null));
+                            m_drawParams.insert(name,nodeElement.attributeNS(KOdfXmlNS::draw, "value", QString::null));
                         }
                     }
                 }

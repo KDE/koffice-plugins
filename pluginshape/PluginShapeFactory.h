@@ -22,18 +22,18 @@
 #ifndef PLUGINSHAPEFACTORY_H
 #define PLUGINSHAPEFACTORY_H
 
-#include <KoShapeFactoryBase.h>
+#include <KShapeFactoryBase.h>
 
-class KoShape;
+class KShape;
 
-class PluginShapeFactory : public KoShapeFactoryBase
+class PluginShapeFactory : public KShapeFactoryBase
 {
 public:
     PluginShapeFactory(QObject *parent);
     ~PluginShapeFactory() {}
 
-    virtual KoShape *createDefaultShape(KoResourceManager *documentResources = 0) const;
-    virtual bool supports(const KoXmlElement &e, KoShapeLoadingContext &context) const;
+    virtual KShape *createDefaultShape(KResourceManager *documentResources = 0) const;
+    virtual bool supports(const KXmlElement &e, KShapeLoadingContext &context) const;
 };
 
 #endif

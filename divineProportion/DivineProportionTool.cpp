@@ -19,10 +19,10 @@
 
 #include "DivineProportionTool.h"
 
-#include <KoCanvasBase.h>
-#include <KoSelection.h>
-#include <KoShapeManager.h>
-#include <KoPointerEvent.h>
+#include <KCanvasBase.h>
+#include <KSelection.h>
+#include <KShapeManager.h>
+#include <KPointerEvent.h>
 
 #include <KLocale>
 #include <KIcon>
@@ -32,8 +32,8 @@
 #include <QCheckBox>
 #include <QPainter>
 
-DivineProportionTool::DivineProportionTool(KoCanvasBase *canvas)
-    : KoToolBase(canvas),
+DivineProportionTool::DivineProportionTool(KCanvasBase *canvas)
+    : KToolBase(canvas),
     m_currentShape(0)
 {
     QActionGroup *group = new QActionGroup(this);
@@ -63,32 +63,32 @@ DivineProportionTool::~DivineProportionTool()
 {
 }
 
-void DivineProportionTool::paint( QPainter &painter, const KoViewConverter &converter)
+void DivineProportionTool::paint( QPainter &painter, const KViewConverter &converter)
 {
     Q_UNUSED(painter);
     Q_UNUSED(converter);
     // nothing to do here
 }
 
-void DivineProportionTool::mousePressEvent( KoPointerEvent *event )
+void DivineProportionTool::mousePressEvent( KPointerEvent *event )
 {
     event->ignore();
 }
 
-void DivineProportionTool::mouseMoveEvent( KoPointerEvent *event )
+void DivineProportionTool::mouseMoveEvent( KPointerEvent *event )
 {
     event->ignore();
 }
 
-void DivineProportionTool::mouseReleaseEvent( KoPointerEvent *event )
+void DivineProportionTool::mouseReleaseEvent( KPointerEvent *event )
 {
     event->ignore();
 }
 
-void DivineProportionTool::activate(ToolActivation toolActivation, const QSet<KoShape*> &shapes)
+void DivineProportionTool::activate(ToolActivation toolActivation, const QSet<KShape*> &shapes)
 {
     Q_UNUSED(toolActivation);
-    foreach (KoShape *shape, shapes) {
+    foreach (KShape *shape, shapes) {
         m_currentShape = dynamic_cast<DivineProportionShape*> (shape);
         if (m_currentShape)
             break;

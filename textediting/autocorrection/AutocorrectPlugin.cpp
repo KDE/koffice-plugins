@@ -23,7 +23,7 @@
 #include <KPluginFactory>
 #include <KPluginLoader>
 
-#include <KoTextEditingRegistry.h>
+#include <KTextEditingRegistry.h>
 
 K_PLUGIN_FACTORY( AutocorrectPluginFactory, registerPlugin<AutocorrectPlugin>(); )
 K_EXPORT_PLUGIN( AutocorrectPluginFactory("AutocorrectPlugin") )
@@ -31,7 +31,7 @@ K_EXPORT_PLUGIN( AutocorrectPluginFactory("AutocorrectPlugin") )
 AutocorrectPlugin::AutocorrectPlugin( QObject *parent, const QVariantList& )
     : QObject(parent)
 {
-    KoTextEditingRegistry::instance()->add( new AutocorrectFactory( parent));
+    KTextEditingRegistry::instance()->add( new AutocorrectFactory( parent));
 }
 
 #include <AutocorrectPlugin.moc>

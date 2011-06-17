@@ -20,11 +20,11 @@
 #ifndef SHAPEFACTORY_H
 #define SHAPEFACTORY_H
 
-#include <KoShapeFactoryBase.h>
+#include <KShapeFactoryBase.h>
 
-class KoShape;
+class KShape;
 
-class DivineProportionShapeFactory : public KoShapeFactoryBase {
+class DivineProportionShapeFactory : public KShapeFactoryBase {
     Q_OBJECT
 
 public:
@@ -32,10 +32,10 @@ public:
     explicit DivineProportionShapeFactory(QObject *parent);
     ~DivineProportionShapeFactory() {}
 
-    virtual KoShape *createDefaultShape(KoResourceManager *documentResources = 0) const;
-    virtual bool supports(const KoXmlElement & e, KoShapeLoadingContext &context) const;
+    virtual KShape *createDefaultShape(KResourceManager *documentResources = 0) const;
+    virtual bool supports(const KXmlElement & e, KShapeLoadingContext &context) const;
 
-    QList<KoShapeConfigWidgetBase*> createShapeOptionPanels();
+    QList<KShapeConfigWidgetBase*> createShapeOptionPanels();
 };
 
 #endif

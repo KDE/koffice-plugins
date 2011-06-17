@@ -21,7 +21,7 @@
 #include "BgSpellCheck.h"
 #include "SpellCheck.h"
 
-#include <KoCharacterStyle.h>
+#include <KCharacterStyle.h>
 
 #include <QTextDocument>
 #include <QCoreApplication>
@@ -109,10 +109,10 @@ QString BgSpellCheck::fetchMoreText()
     QString country(m_defaultCountry);
     if (!iter.atEnd()) {
         QTextCharFormat cf = iter.fragment().charFormat();
-        if (cf.hasProperty(KoCharacterStyle::Language))
-            language = cf.property(KoCharacterStyle::Language).toString();
-        if (cf.hasProperty(KoCharacterStyle::Country))
-            country = cf.property(KoCharacterStyle::Country).toString();
+        if (cf.hasProperty(KCharacterStyle::Language))
+            language = cf.property(KCharacterStyle::Language).toString();
+        if (cf.hasProperty(KCharacterStyle::Country))
+            country = cf.property(KCharacterStyle::Country).toString();
     }
     Q_ASSERT(iter.fragment().isValid());
 
@@ -134,17 +134,17 @@ QString BgSpellCheck::fetchMoreText()
         // qDebug() << "Checking for viability forwarding to " << iter.fragment().position();
         QTextCharFormat cf = iter.fragment().charFormat();
         // qDebug() << " new fragment language;"
-            // << (cf.hasProperty(KoCharacterStyle::Language) ?  cf.property(KoCharacterStyle::Language).toString() : "unset");
+            // << (cf.hasProperty(KCharacterStyle::Language) ?  cf.property(KCharacterStyle::Language).toString() : "unset");
 
-        if ((cf.hasProperty(KoCharacterStyle::Language)
-                    && language != cf.property(KoCharacterStyle::Language).toString())
-                || (!cf.hasProperty(KoCharacterStyle::Language)
+        if ((cf.hasProperty(KCharacterStyle::Language)
+                    && language != cf.property(KCharacterStyle::Language).toString())
+                || (!cf.hasProperty(KCharacterStyle::Language)
                     && language != m_defaultLanguage))
             break;
 
-        if ((cf.hasProperty(KoCharacterStyle::Country)
-                    && country != cf.property(KoCharacterStyle::Country).toString())
-                || (!cf.hasProperty(KoCharacterStyle::Country)
+        if ((cf.hasProperty(KCharacterStyle::Country)
+                    && country != cf.property(KCharacterStyle::Country).toString())
+                || (!cf.hasProperty(KCharacterStyle::Country)
                     && country != m_defaultCountry))
             break;
     }

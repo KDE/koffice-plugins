@@ -38,34 +38,34 @@ Ruler::Ruler(QObject *parent)
         m_options(noOptions)
 {}
 
-void Ruler::setUnit(KoUnit unit)
+void Ruler::setUnit(KUnit unit)
 {
     m_unit = unit;
 
     // approximately 15 points seems to be a good value for the step size
-    switch (m_unit.indexInList(KoUnit::ShowAll)) {
-    case KoUnit::Millimeter:
+    switch (m_unit.indexInList(KUnit::ShowAll)) {
+    case KUnit::Millimeter:
         setStepValue(14.17325288515625502486); // 5.0 mm
         break;
-    case KoUnit::Point:
+    case KUnit::Point:
         setStepValue(15.0); // 15 pt
         break;
-    case KoUnit::Inch:
+    case KUnit::Inch:
         setStepValue(14.399999999998848); // 0.2 inch
         break;
-    case KoUnit::Centimeter:
+    case KUnit::Centimeter:
         setStepValue(14.17325288515625502486); // 0.5 cm
         break;
-    case KoUnit::Decimeter:
+    case KUnit::Decimeter:
         setStepValue(14.17325288515625502486); // 0.05 dm
         break;
-    case KoUnit::Pica:
+    case KUnit::Pica:
         setStepValue(15.00000006000000024); // 1.25 pica
         break;
-    case KoUnit::Cicero:
+    case KUnit::Cicero:
         setStepValue(12.84010270181826254741); // 1 cicero
         break;
-    case KoUnit::Pixel:
+    case KUnit::Pixel:
     default:
         setStepValue(15.0);
         break;
@@ -81,7 +81,7 @@ QString Ruler::valueString() const
 {
     QString ret;
     ret.append(m_unit.toUserStringValue(m_value));
-    ret.append(KoUnit::unitName(m_unit));
+    ret.append(KUnit::unitName(m_unit));
     return ret;
 }
 

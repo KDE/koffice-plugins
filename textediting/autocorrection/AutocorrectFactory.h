@@ -20,16 +20,16 @@
 #ifndef AUTOCORRECT_FACTORY
 #define AUTOCORRECT_FACTORY
 
-#include <KoTextEditingFactory.h>
+#include <KTextEditingFactory.h>
 
-class KoTextEditingPlugin;
+class KTextEditingPlugin;
 
-class AutocorrectFactory : public KoTextEditingFactory {
+class AutocorrectFactory : public KTextEditingFactory {
 public:
     explicit AutocorrectFactory(QObject *parent);
     ~AutocorrectFactory() {}
 
-    KoTextEditingPlugin *create(KoResourceManager *documentResourceManager) const;
+    KTextEditingPlugin *create(KResourceManager *documentResourceManager) const;
 };
 
 #endif

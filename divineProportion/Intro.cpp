@@ -25,7 +25,7 @@ Intro::Intro()
     widget.setupUi(this);
 }
 
-void Intro::open(KoShape *shape)
+void Intro::open(KShape *shape)
 {
     m_shape = dynamic_cast<DivineProportionShape*> (shape);
     widget.topRight->setChecked(true);
@@ -35,9 +35,9 @@ void Intro::save()
 {
     if (m_shape == 0)
         return;
-    Q_ASSERT(m_resourceManager);
-    if (m_resourceManager->hasResource(KoCanvasResource::PageSize)) {
-        QSizeF size = m_resourceManager->sizeResource(KoCanvasResource::PageSize);
+    Q_ASSERT(resourceManager());
+    if (resourceManager()->hasResource(KoCanvasResource::PageSize)) {
+        QSizeF size = resourceManager()->sizeResource(KoCanvasResource::PageSize);
         if (size.height() > size.width()) {
             m_shape->setSize(QSizeF(size.height(), size.width()));
             m_shape->rotate(-90);

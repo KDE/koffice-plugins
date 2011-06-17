@@ -22,7 +22,7 @@
 
 #include "RulerFragment.h"
 
-#include <KoUnit.h>
+#include <KUnit.h>
 
 #include <QColor>
 #include <QList>
@@ -46,10 +46,10 @@ public:
 
     ~Ruler() {}
 
-    KoUnit unit() const {
+    KUnit unit() const {
         return m_unit;
     }
-    void setUnit(KoUnit unit);
+    void setUnit(KUnit unit);
 
     qreal value() const;
     QString valueString() const;
@@ -173,7 +173,7 @@ private:
     qreal m_stepValue;
     qreal m_minValue;
     qreal m_maxValue;
-    KoUnit m_unit;
+    KUnit m_unit;
 
     bool m_active;
     bool m_focused;

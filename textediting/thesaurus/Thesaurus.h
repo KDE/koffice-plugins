@@ -21,7 +21,7 @@
 #ifndef THESAURUS_H
 #define THESAURUS_H
 
-#include <KoTextEditingPlugin.h>
+#include <KTextEditingPlugin.h>
 
 #include <QUrl>
 
@@ -41,7 +41,7 @@ class QComboBox;
 class QTextBrowser;
 class QTextDocument;
 
-class Thesaurus : public KoTextEditingPlugin
+class Thesaurus : public KTextEditingPlugin
 {
     Q_OBJECT
 

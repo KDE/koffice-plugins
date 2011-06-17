@@ -21,18 +21,18 @@
 #include "ParagraphEditor.h"
 #include "Label.h"
 
-#include <KoCanvasBase.h>
-#include <KoShape.h>
-#include <KoTextShapeData.h>
-#include <KoTextDocumentLayout.h>
-#include <KoViewConverter.h>
-#include <KoParagraphStyle.h>
+#include <KCanvasBase.h>
+#include <KShape.h>
+#include <KTextShapeData.h>
+#include <KTextDocumentLayout.h>
+#include <KViewConverter.h>
+#include <KParagraphStyle.h>
 
 #include <QPainter>
 
 #include <KLocale>
 
-ParagraphEditor::ParagraphEditor(QObject *parent, KoCanvasBase *canvas)
+ParagraphEditor::ParagraphEditor(QObject *parent, KCanvasBase *canvas)
         : ParagraphBase(parent, canvas),
         m_activeRuler(noRuler),
         m_focusedRuler(noRuler),
@@ -124,7 +124,7 @@ void ParagraphEditor::saveLineSpacing()
     applyStyle();
 }
 
-void ParagraphEditor::paintLabel(QPainter &painter, const KoViewConverter &converter) const
+void ParagraphEditor::paintLabel(QPainter &painter, const KViewConverter &converter) const
 {
     Label label;
     QLineF unmapped;
@@ -174,7 +174,7 @@ void ParagraphEditor::paintLabel(QPainter &painter, const KoViewConverter &conve
     label.paint(painter);
 }
 
-void ParagraphEditor::paint(QPainter &painter, const KoViewConverter &converter)
+void ParagraphEditor::paint(QPainter &painter, const KViewConverter &converter)
 {
     m_needsRepaint = false;
 
@@ -185,7 +185,7 @@ void ParagraphEditor::paint(QPainter &painter, const KoViewConverter &converter)
         QPointF trans = converter.documentToView(QPointF(1.0, 1.0));
         QTransform matrix = QTransform().translate(trans.x(), trans.y());
         painter.setTransform(matrix * painter.transform());
-        KoShape::applyConversion(painter, converter);
+        KShape::applyConversion(painter, converter);
         painter.setPen(Qt::darkGray);
 
         for (int ruler = 0; ruler != maxRuler; ++ruler) {
@@ -209,7 +209,7 @@ QRectF ParagraphEditor::dirtyRectangle(bool updateWholeRegion)
     QRectF repaintRectangle = m_storedRepaintRectangle;
     m_storedRepaintRectangle = QRectF();
     foreach(const ParagraphFragment &fragment, fragments()) {
-        KoShape *shape = fragment.shape();
+        KShape *shape = fragment.shape();
         QRectF boundingRect(QPointF(0, 0), shape->size());
 
         // adjust for arrow heads and label
@@ -227,8 +227,8 @@ QRectF ParagraphEditor::dirtyRectangle(bool updateWholeRegion)
 
 void ParagraphEditor::initRulerFragments(const ParagraphFragment *fragment, Ruler *rulers) const
 {
-    KoShape *shape = fragment->shape();
-    KoTextShapeData *textShapeData = static_cast<KoTextShapeData*>(shape->userData());
+    KShape *shape = fragment->shape();
+    KTextShapeData *textShapeData = static_cast<KTextShapeData*>(shape->userData());
 
     QRectF border = fragment->border();
     QRectF firstLine = fragment->firstLine();
@@ -309,7 +309,7 @@ void ParagraphEditor::applyStyle()
 
     cursor().mergeBlockFormat(format);
 
-    static_cast<KoTextDocumentLayout*>(textBlock().document()->documentLayout())->layout();
+    static_cast<KTextDocumentLayout*>(textBlock().document()->documentLayout())->layout();
 
     addFragments();
 
