@@ -12,4 +12,5 @@ add_subdirectory(paragraphtool)
 add_subdirectory(pluginshape)
 add_subdirectory(simpletextedit)
 add_subdirectory(textediting)
+add_subdirectory(colors)
 

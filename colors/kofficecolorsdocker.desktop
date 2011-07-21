@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Colors Docker
+X-KDE-ServiceTypes=KOffice/Dock
+Type=Service
+X-KDE-Library=kofficecolorsdocker
+X-Flake-MinVersion=0
+X-Flake-PluginVersion=1
