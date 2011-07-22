@@ -301,6 +301,7 @@ void SelectorWidget::updateUi()
     if (m_showStrokeWidget) {
         LineStrokes *lineStrokes = new LineStrokes(this);
         widget.tabWidget->addTab(lineStrokes, i18n("Stroke"));
+        lineStrokes->setPen((*m_openShapes.begin())->border()->pen()); // TODO move this logic to another class
     }
 }
 

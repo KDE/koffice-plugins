@@ -46,13 +46,25 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QRadioButton" name="squareCap"/>
+    <widget class="QRadioButton" name="squareCap">
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QRadioButton" name="roundCap"/>
+    <widget class="QRadioButton" name="roundCap">
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item row="2" column="3">
-    <widget class="QRadioButton" name="flatCap"/>
+    <widget class="QRadioButton" name="flatCap">
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item row="3" column="0">
     <widget class="QLabel" name="label_4">
@@ -62,23 +74,35 @@
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QRadioButton" name="miterJoin"/>
+    <widget class="QRadioButton" name="miterJoin">
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item row="3" column="2">
-    <widget class="QRadioButton" name="roundJoin"/>
+    <widget class="QRadioButton" name="roundJoin">
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item row="3" column="3">
-    <widget class="QRadioButton" name="bevelJoin"/>
+    <widget class="QRadioButton" name="bevelJoin">
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
    <item row="4" column="0">
     <widget class="QLabel" name="label_5">
      <property name="text">
-      <string>Meter:</string>
+      <string>Miter:</string>
      </property>
     </widget>
    </item>
    <item row="4" column="1" colspan="3">
-    <widget class="QDoubleSpinBox" name="meterLimit">
+    <widget class="QDoubleSpinBox" name="miterLimit">
      <property name="suffix">
       <string> %</string>
      </property>

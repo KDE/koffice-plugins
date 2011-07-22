@@ -23,21 +23,31 @@
 
 #include <ui_LineStrokes.h>
 
+class QPen;
+class KUnit;
+
 class LineStrokes : public QWidget
 {
     Q_OBJECT
 public:
     LineStrokes(QWidget *parent = 0);
 
-// setUnit(const KUnit &unit;)
+    void setUnit(const KUnit &unit);
 
-// void setPen(const QPen &pen);
+    void setPen(const QPen &pen);
 
 signals:
     void strokeChanged(const QPen &pen);
 
+private slots:
+    void setLineStyle(int);
+    void setCaps(int);
+    void setJoins(int);
+
 private:
     Ui::LineStrokes widget;
+    QButtonGroup *m_caps;
+    QButtonGroup *m_joins;
 };
 
 #endif
