@@ -1,5 +1,11 @@
 [Desktop Entry]
 Name=Colors Docker
+Name[nl]=Vastzetter van kleuren
+Name[pt]=Área Acoplável de Cores
+Name[pt_BR]=Área acoplável de cores
+Name[sv]=Färgpanel
+Name[uk]=Панель кольорів
+Name[x-test]=xxColors Dockerxx
 X-KDE-ServiceTypes=KOffice/Dock
 Type=Service
 X-KDE-Library=kofficecolorsdocker
