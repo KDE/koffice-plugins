@@ -13,4 +13,4 @@ add_subdirectory(pluginshape)
 add_subdirectory(simpletextedit)
 add_subdirectory(textediting)
 add_subdirectory(colors)
-
+add_subdirectory(variabledocker)

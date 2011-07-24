@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Variable Management Docker
+ServiceTypes=KOffice/Dock
+Type=Service
+X-KDE-Library=variable_docker_plugin
+X-Flake-MinVersion=0
+X-Flake-PluginVersion=1
+X-Flake-Version=1
