@@ -162,6 +162,7 @@ void SelectorWidget::setType(int type)
                 break;
             }
             }
+            break;
         }
         case TypePatterns:
             switch (m_state) {
