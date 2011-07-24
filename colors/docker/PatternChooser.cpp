@@ -134,7 +134,7 @@ void PatternChooser::shapeChanged(KShape *shape, KShape::ChangeType type)
     if (type == KShape::Deleted) {
         m_shapes.remove(shape);
     } else if (type == KShape::BackgroundChanged) {
-        if (!m_background->deref())
+        if (m_background && !m_background->deref())
             delete m_background;
         m_background = dynamic_cast<KPatternBackground*>(shape->background());
         if (m_background)
