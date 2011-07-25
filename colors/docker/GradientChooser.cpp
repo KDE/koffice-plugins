@@ -25,7 +25,7 @@
 
 #include <QGridLayout>
 
-GradientChooser::GradientChooser(QSet<KShape*> shapes, SelectorWidget::FillStroke type, QWidget *parent)
+GradientChooser::GradientChooser(const QSet<KShape*> &shapes, SelectorWidget::FillStroke type, QWidget *parent)
     : QWidget(parent),
     m_background(0),
     m_shapeBorder(0),

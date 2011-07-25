@@ -35,7 +35,7 @@ class GradientChooser : public QWidget
 {
     Q_OBJECT
 public:
-    GradientChooser(QSet<KShape*> shapes, SelectorWidget::FillStroke type, QWidget *parent = 0);
+    GradientChooser(const QSet<KShape*> &shapes, SelectorWidget::FillStroke type, QWidget *parent = 0);
     ~GradientChooser();
 
 public slots:

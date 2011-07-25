@@ -26,7 +26,7 @@
 
 #include <QGridLayout>
 
-ColorChooser::ColorChooser(QSet<KShape*> shapes, SelectorWidget::FillStroke type, QWidget *parent)
+ColorChooser::ColorChooser(const QSet<KShape*> &shapes, SelectorWidget::FillStroke type, QWidget *parent)
     : QWidget(parent),
     m_background(0),
     m_shapeBorder(0),

@@ -17,14 +17,18 @@
  * Boston, MA 02110-1301, USA.
  */
 #include "LineStrokes.h"
+#include <KShape.h>
+#include <KShapeBorderBase.h>
 
 #include <KIcon>
 #include <QPen>
 
-LineStrokes::LineStrokes(QWidget *parent)
+
+LineStrokes::LineStrokes(const QSet<KShape*> &shapes, QWidget *parent)
     : QWidget(parent),
     m_caps(new QButtonGroup(this)),
-    m_joins(new QButtonGroup(this))
+    m_joins(new QButtonGroup(this)),
+    m_shapes(shapes)
 {
     widget.setupUi(this);
 
@@ -42,9 +46,15 @@ LineStrokes::LineStrokes(QWidget *parent)
     widget.miterJoin->setIcon(KIcon("join_miter"));
     widget.bevelJoin->setIcon(KIcon("join_bevel"));
 
-    connect (widget.style, SIGNAL(currentIndexChanged(int)), this, SLOT(setLineStyle(int)));
-    connect (m_caps, SIGNAL(buttonClicked(int)), this, SLOT(setCaps(int)));
-    connect (m_joins, SIGNAL(buttonClicked(int)), this, SLOT(setJoins(int)));
+    Q_ASSERT(!m_shapes.isEmpty());
+    setPen((*m_shapes.begin())->border()->pen());
+
+    connect (widget.style, SIGNAL(currentIndexChanged(int)), this, SLOT(propertyChanged()));
+    connect (m_caps, SIGNAL(buttonClicked(int)), this, SLOT(propertyChanged()));
+    connect (m_joins, SIGNAL(buttonClicked(int)), this, SLOT(propertyChanged()));
+
+    connect (widget.widthSpinbox, SIGNAL(valueChanged(double)), this, SLOT(propertyChanged()));
+    connect (widget.miterLimit, SIGNAL(valueChanged(double)), this, SLOT(propertyChanged()));
 }
 
 void LineStrokes::setUnit(const KUnit &unit)
@@ -61,14 +71,20 @@ void LineStrokes::setPen(const QPen &pen)
     widget.miterLimit->setValue(pen.miterLimit() * 100);
 }
 
-void LineStrokes::setLineStyle(int index)
+void LineStrokes::propertyChanged()
 {
-}
+    foreach (KShape *shape, m_shapes) {
+        Q_ASSERT(shape->border());
+        KShapeBorderBase *border = shape->border();
+        QPen pen = border->pen();
+        pen.setWidthF(widget.widthSpinbox->value());
+        pen.setStyle(static_cast<Qt::PenStyle>(widget.style->currentIndex()));
+qDebug() << "caps: " << m_caps->checkedId() << "join" << m_joins->checkedId();
+        pen.setCapStyle(static_cast<Qt::PenCapStyle>(m_caps->checkedId()));
+        pen.setJoinStyle(static_cast<Qt::PenJoinStyle>(m_joins->checkedId()));
+        pen.setMiterLimit(widget.miterLimit->value() / 100.);
 
-void LineStrokes::setCaps(int)
-{
-}
-
-void LineStrokes::setJoins(int)
-{
+        border->setPen(pen);
+    }
+    emit changed();
 }

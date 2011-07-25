@@ -34,7 +34,7 @@ class ColorChooser : public QWidget
 {
     Q_OBJECT
 public:
-    ColorChooser(QSet<KShape*> shapes, SelectorWidget::FillStroke type, QWidget *parent = 0);
+    ColorChooser(const QSet<KShape*> &shapes, SelectorWidget::FillStroke type, QWidget *parent = 0);
     ~ColorChooser();
 
 public slots:

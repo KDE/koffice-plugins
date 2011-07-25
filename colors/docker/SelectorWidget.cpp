@@ -93,6 +93,7 @@ void SelectorWidget::setType(int type)
     m_type = newType;
     widget.typeChoice->setCurrentIndex(type);
 
+    repaintAllShapes();
     foreach (KShape *shape, m_openShapes) {
         switch (m_type) {
         case TypeNoFill:
@@ -100,13 +101,13 @@ void SelectorWidget::setType(int type)
             case Fill:
                 if (shape->background()) {
                     shape->setBackground(0);
-                    shape->update();
                 }
                 break;
             case Stroke:
+                m_showStrokeWidget = false;
                 if (shape->border()) {
-                    shape->setBorder(0);
                     update();
+                    shape->setBorder(0);
                 }
             }
             break;
@@ -192,6 +193,7 @@ void SelectorWidget::setType(int type)
             break;
         }
     }
+    repaintAllShapes();
     updateUi();
 }
 
@@ -300,9 +302,9 @@ void SelectorWidget::updateUi()
     }
 
     if (m_showStrokeWidget) {
-        LineStrokes *lineStrokes = new LineStrokes(this);
+        LineStrokes *lineStrokes = new LineStrokes(m_openShapes, this);
         widget.tabWidget->addTab(lineStrokes, i18n("Stroke"));
-        lineStrokes->setPen((*m_openShapes.begin())->border()->pen()); // TODO move this logic to another class
+        connect (lineStrokes, SIGNAL(changed()), this, SLOT(repaintAllShapes()));
     }
 }
 
