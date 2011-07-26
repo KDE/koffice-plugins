@@ -1,6 +1,13 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Variable Management Docker
+Name[et]=Muutujate haldamise dokk
+Name[nl]=Vastzetter van beheerder van variabelen
+Name[pt]=Área de Gestão de Variáveis
+Name[pt_BR]=Área de gerenciamento de variáveis
+Name[sv]=Variabel hanteringspanel
+Name[uk]=Панель керування змінними
+Name[x-test]=xxVariable Management Dockerxx
 ServiceTypes=KOffice/Dock
 Type=Service
 X-KDE-Library=variable_docker_plugin
