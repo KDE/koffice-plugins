@@ -8,6 +8,7 @@ Name[pt_BR]=Área acoplável de cores
 Name[sv]=Färgpanel
 Name[uk]=Панель кольорів
 Name[x-test]=xxColors Dockerxx
+Name[zh_TW]=色彩嵌入器
 X-KDE-ServiceTypes=KOffice/Dock
 Type=Service
 X-KDE-Library=kofficecolorsdocker

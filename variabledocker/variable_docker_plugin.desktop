@@ -8,6 +8,7 @@ Name[pt_BR]=Área de gerenciamento de variáveis
 Name[sv]=Variabel hanteringspanel
 Name[uk]=Панель керування змінними
 Name[x-test]=xxVariable Management Dockerxx
+Name[zh_TW]=可變管理嵌入器
 ServiceTypes=KOffice/Dock
 Type=Service
 X-KDE-Library=variable_docker_plugin
