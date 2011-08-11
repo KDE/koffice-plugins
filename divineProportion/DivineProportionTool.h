@@ -36,14 +36,8 @@ public:
     ~DivineProportionTool();
 
     /// reimplemented from superclass
-    virtual void paint( QPainter &painter, const KViewConverter &converter );
+    virtual void paint(QPainter &painter, const KViewConverter &converter);
 
-    /// reimplemented from superclass
-    virtual void mousePressEvent( KPointerEvent *event ) ;
-    /// reimplemented from superclass
-    virtual void mouseMoveEvent( KPointerEvent *event );
-    /// reimplemented from superclass
-    virtual void mouseReleaseEvent( KPointerEvent *event );
     /// reimplemented from superclass
     virtual void activate(ToolActivation toolActivation, const QSet<KShape*> &shapes);
     /// reimplemented from superclass

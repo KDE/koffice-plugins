@@ -31,7 +31,9 @@ ParagraphTool::ParagraphTool(KCanvasBase *canvas)
 {}
 
 ParagraphTool::~ParagraphTool()
-{}
+{
+    setFlags(ToolHandleKeyEvents);
+}
 
 QWidget *ParagraphTool::createOptionWidget()
 {

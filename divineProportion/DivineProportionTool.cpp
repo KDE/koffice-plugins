@@ -36,6 +36,7 @@ DivineProportionTool::DivineProportionTool(KCanvasBase *canvas)
     : KToolBase(canvas),
     m_currentShape(0)
 {
+    setFlags(ToolDoesntHandleMouseEvents);
     QActionGroup *group = new QActionGroup(this);
     m_topLeftOrientation  = new QAction(KIcon("golden-ratio-topleft"), i18n("Top Left"), this);
     m_topLeftOrientation->setCheckable(true);
@@ -63,26 +64,11 @@ DivineProportionTool::~DivineProportionTool()
 {
 }
 
-void DivineProportionTool::paint( QPainter &painter, const KViewConverter &converter)
+void DivineProportionTool::paint(QPainter &painter, const KViewConverter &converter)
 {
     Q_UNUSED(painter);
     Q_UNUSED(converter);
     // nothing to do here
-}
-
-void DivineProportionTool::mousePressEvent( KPointerEvent *event )
-{
-    event->ignore();
-}
-
-void DivineProportionTool::mouseMoveEvent( KPointerEvent *event )
-{
-    event->ignore();
-}
-
-void DivineProportionTool::mouseReleaseEvent( KPointerEvent *event )
-{
-    event->ignore();
 }
 
 void DivineProportionTool::activate(ToolActivation toolActivation, const QSet<KShape*> &shapes)
