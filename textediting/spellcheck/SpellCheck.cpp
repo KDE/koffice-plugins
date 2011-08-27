@@ -282,7 +282,7 @@ void SpellCheck::documentChanged(int from, int min, int plus)
 
 void SpellCheck::resourceChanged(int key)
 {
-    if (key == KoDocumentResource::TextDocuments) {
+    if (key == KDocumentResource::TextDocuments) {
         // TODO. Do something?
     }
 }
