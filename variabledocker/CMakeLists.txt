@@ -13,7 +13,7 @@ set(variable_docker_plugin_SRCS
 
 kde4_add_plugin(variable_docker_plugin ${variable_docker_plugin_SRCS})
 
-target_link_libraries(variable_docker_plugin ${KOTEXT_LIBS})
+target_link_libraries(variable_docker_plugin ${KODFTEXT_LIBS})
 
 install(TARGETS variable_docker_plugin DESTINATION ${PLUGIN_INSTALL_DIR})
 

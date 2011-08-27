@@ -20,7 +20,7 @@
 #include "DivineProportionTool.h"
 
 #include <KCanvasBase.h>
-#include <KSelection.h>
+#include <KShapeSelection.h>
 #include <KShapeManager.h>
 #include <KPointerEvent.h>
 

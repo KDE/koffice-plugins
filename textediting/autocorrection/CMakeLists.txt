@@ -2,8 +2,6 @@ project(autocorrection)
 
 add_subdirectory( data )
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${KOTEXT_INCLUDES} )
-
 set(autocorrect_SRCS
     AutocorrectPlugin.cpp
     Autocorrect.cpp
@@ -17,7 +15,7 @@ kde4_add_ui_files( autocorrect_SRCS
 
 kde4_add_plugin(autocorrect ${autocorrect_SRCS})
 
-target_link_libraries(autocorrect ${KOTEXT_LIBS})
+target_link_libraries(autocorrect ${KODFTEXT_LIBS})
 
 install(TARGETS autocorrect DESTINATION ${PLUGIN_INSTALL_DIR})
 

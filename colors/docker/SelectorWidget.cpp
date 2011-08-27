@@ -29,10 +29,10 @@
 #include <KGradientBackground.h>
 #include <KImageCollection.h>
 #include <KLineBorder.h>
-#include <KoFlake.h>
+#include <KFlake.h>
 #include <KPatternBackground.h>
 #include <KResourceManager.h>
-#include <KSelection.h>
+#include <KShapeSelection.h>
 #include <KShapeBorderRegistry.h>
 #include <KShapeController.h>
 #include <KShapeManager.h>
@@ -208,7 +208,7 @@ void SelectorWidget::shapeSelectionChanged()
         return;
     }
 
-    const QList<KShape*> selectedShapes = m_shapeSelection->selectedShapes(KoFlake::StrippedSelection);
+    const QList<KShape*> selectedShapes = m_shapeSelection->selectedShapes(KFlake::StrippedSelection);
     if (selectedShapes.isEmpty()) {
         setEnabled(false);
         return;
@@ -311,7 +311,7 @@ void SelectorWidget::updateUi()
 void SelectorWidget::setCanvas(KCanvasBase *canvas)
 {
     Q_ASSERT(canvas);
-    KSelection *selection = canvas->shapeManager()->selection();
+    KShapeSelection *selection = canvas->shapeManager()->selection();
     m_shapeManager = canvas->shapeManager();
     Q_ASSERT(selection);
     if (m_shapeSelection)

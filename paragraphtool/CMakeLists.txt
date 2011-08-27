@@ -2,8 +2,6 @@ project( paragraphPlugin )
 
 add_subdirectory( pics )
 
-include_directories(  ${KOTEXT_INCLUDES} )
-
 ########### Flake Plugin library ###############
 
 SET ( paragraphtool_SRCS
@@ -28,7 +26,7 @@ kde4_add_ui_files(
 
 kde4_add_plugin(paragraphtool ${paragraphtool_SRCS})
 
-target_link_libraries(paragraphtool ${KOTEXT_LIBS})
+target_link_libraries(paragraphtool ${KODFTEXT_LIBS})
 install(TARGETS paragraphtool DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############

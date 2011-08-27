@@ -24,7 +24,7 @@
 #include "SpellCheckMenu.h"
 
 #include <KCharacterStyle.h>
-#include <KoText.h>
+#include <KOdfText.h>
 #include <KResourceManager.h>
 
 #include <KLocale>
@@ -92,7 +92,7 @@ void SpellCheck::setResourceManager(KResourceManager *rm)
             if (doc->characterCount() <= 2)
                 continue;
             checkSection(doc, 0, doc->characterCount());
-            doc->begin().setUserState(KoText::BlockTextLayoutState);
+            doc->begin().setUserState(KOdfText::BlockTextLayoutState);
         }
     }
 }
@@ -300,7 +300,7 @@ void SpellCheck::runQueue()
         QTextBlock block = section.document->findBlock(section.from);
         if (!block.isValid())
             continue;
-        block.setUserState(KoText::BlockTextLayoutState);
+        block.setUserState(KOdfText::BlockTextLayoutState);
         m_isChecking = true;
         m_misspellings.clear();
         int blocks = 0;
@@ -342,11 +342,11 @@ void SpellCheck::finishedRun()
         QTextBlock block = m_document->findBlock(bl.start);
         if (!block.isValid())
             continue;
-        if (block.userState() == KoText::BlockTextLayoutState && block.layout()->lineCount() == 0) {
+        if (block.userState() == KOdfText::BlockTextLayoutState && block.layout()->lineCount() == 0) {
             // make sure we start a layout
             m_document->markContentsDirty(block.position(), block.position() + 1);
         }
-        block.setUserState(KoText::NoState);
+        block.setUserState(KOdfText::NoState);
         if (bl.start != block.position() || bl.length != block.length())
             continue;
         QList<QTextLayout::FormatRange> ranges = block.layout()->additionalFormats();

@@ -32,7 +32,7 @@ GNU General Public License for more details.
 #include <KVariableManager.h>
 #include <KShapeController.h>
 #include <KResourceManager.h>
-#include <KoText.h>
+#include <KOdfText.h>
 
 VariableDockerWidget::VariableDockerWidget(QWidget* parent) : QDockWidget("VariableDocker", parent), KCanvasObserverBase(), m_canvas(NULL), m_vmanager(NULL)
 {
@@ -100,7 +100,7 @@ void VariableDockerWidget::setCanvas(KCanvasBase* canvas){
 	KResourceManager* manager = scont->resourceManager();
 	Q_ASSERT(manager);
 	
-	KInlineTextObjectManager* tmanager = qvariant_cast<KInlineTextObjectManager *>(manager->resource(KoText::InlineTextObjectManager));
+	KInlineTextObjectManager* tmanager = qvariant_cast<KInlineTextObjectManager *>(manager->resource(KOdfText::InlineTextObjectManager));
 	Q_ASSERT(tmanager);
 	
 	m_vmanager = tmanager->variableManager();

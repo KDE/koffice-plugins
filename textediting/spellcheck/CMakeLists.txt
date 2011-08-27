@@ -1,8 +1,6 @@
 project(spellcheck)
 add_subdirectory( tests )
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${KOTEXT_INCLUDES} )
-
 set(spellcheck_SRCS
     SpellCheckPlugin.cpp
     SpellCheck.cpp
@@ -13,7 +11,7 @@ set(spellcheck_SRCS
 
 kde4_add_plugin(spellcheck ${spellcheck_SRCS})
 
-target_link_libraries(spellcheck ${KOTEXT_LIBS})
+target_link_libraries(spellcheck ${KODFTEXT_LIBS})
 
 install(TARGETS spellcheck DESTINATION ${PLUGIN_INSTALL_DIR})
 

@@ -25,7 +25,7 @@
 #include <KToolProxy.h>
 #include <KResourceManager.h>
 #include <KoTextEditor.h>
-#include <KoText.h>
+#include <KOdfText.h>
 
 #include <KDebug>
 #include <KLocale>
@@ -144,7 +144,7 @@ void Panel::toolChangeDetected(const QString &toolId)
 
 void Panel::resourceChanged (int key, const QVariant &value)
 {
-    if (key == KoText::CurrentTextDocument) {
+    if (key == KOdfText::CurrentTextDocument) {
         if (value.isNull() && m_parent) {
             delete m_parent;
             m_parent = 0;

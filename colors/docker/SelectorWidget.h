@@ -27,7 +27,7 @@
 
 class KCanvasBase;
 class KImageCollection;
-class KSelection;
+class KShapeSelection;
 
 class SelectorWidget : public QWidget
 {
@@ -68,7 +68,7 @@ private:
     Type m_type;
     FillStroke m_state;
     QWidget *m_current;
-    KSelection *m_shapeSelection;
+    KShapeSelection *m_shapeSelection;
     QSet<KShape*> m_openShapes;
     KImageCollection *m_imageCollection;
     KShapeManager *m_shapeManager;
